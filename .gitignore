@@ -1,0 +1,9 @@
+**/migrations/*
+*.pyc
+.idea/
+.vscode/
+logs/
+venv/
+school_management_system/SECRET_KEY
+school_management_system/DEBUG
+school_management_system/ENV
