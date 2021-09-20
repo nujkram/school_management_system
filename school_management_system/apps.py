@@ -51,4 +51,8 @@ INSTALLED_APPS += [
 INSTALLED_APPS += [
     'accounts',
     'profiles',
+    'locations',
+    'admin_dashboard',
+    'faculty_dashboard',
+    'student_dashboard',
 ]

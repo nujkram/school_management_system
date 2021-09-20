@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import AccessMixin
 from rest_framework.exceptions import PermissionDenied as APIPermissionDenied
 
-from accounts.models.account.constants import USER, SUPERADMIN, ADMIN
+from accounts.models.account.constants import USER, SUPERADMIN, ADMIN, FACULTY, STUDENT
 
 
 class IsAdminAPIMixin(object):
@@ -23,3 +23,16 @@ class IsAdminViewMixin(AccessMixin):
             return self.handle_no_permission()
         return super().dispatch(request, *args, **kwargs)
 
+
+class IsFacultyViewMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.user_type == FACULTY and not request.user.user_type == SUPERADMIN:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+
+class IsStudentViewMixin(AccessMixin):
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.user_type == STUDENT and not request.user.user_type == SUPERADMIN:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)

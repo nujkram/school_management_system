@@ -20,6 +20,7 @@ class Gender(models.Model):
     def __str__(self):
         return self.name
 
+
 class Profile(models.Model):
     # Fields
     first_name = models.CharField(max_length=32, blank=True, null=True, default='')
@@ -49,8 +50,8 @@ class Profile(models.Model):
 
     def as_html(self):
         html = f"<p class='kv-pair kv-pair-center'><span class='kv-key'>Full Name</span><span class='kv-value'>{self.get_full_name()}</p>" \
-            f"<p class='kv-pair kv-pair-center'><span class='kv-key'>Sex</span><span class='kv-value'>{self.gender}</p>" \
-            f"<p class='kv-pair kv-pair-center'><span class='kv-key'>Date of Birth</span><span class='kv-value'>{self.date_of_birth}</p>"
+               f"<p class='kv-pair kv-pair-center'><span class='kv-key'>Sex</span><span class='kv-value'>{self.gender}</p>" \
+               f"<p class='kv-pair kv-pair-center'><span class='kv-key'>Date of Birth</span><span class='kv-value'>{self.date_of_birth}</p>"
         return html
 
     def get_casual_name(self):

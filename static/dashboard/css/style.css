@@ -1,0 +1,28 @@
+.sidebar .nav i, .off-canvas-sidebar .nav {
+    text-align: left;
+}
+
+.sidebar .nav .collapse {
+    color: #ffffff;
+    /*margin: 0 50px;*/
+    position: relative; /* positioned elements should use left right top or bottom instead of margins */
+    text-transform: uppercase;
+    font-size: 0.62475rem;
+    animation: submenu 0.1s 1;
+    animation-timing-function: linear;
+    left: 30px;
+}
+
+@keyframes submenu {
+    from {
+        left: 0px;
+    }
+    to {
+        left: 30px;
+    }
+}
+
+option {
+    background-color: #27293d !important;
+}
+

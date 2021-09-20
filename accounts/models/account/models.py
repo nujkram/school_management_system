@@ -19,7 +19,7 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.apps import apps
 
-from .constants import USERNAME_REGEX, USER_TYPE_CHOICES, USER, ADMIN, SUPERADMIN
+from .constants import USERNAME_REGEX, USER_TYPE_CHOICES, USER, ADMIN, SUPERADMIN, FACULTY, STUDENT
 from .managers import AccountManager
 
 logger = logging.getLogger(__name__)

@@ -13,20 +13,24 @@ except FileNotFoundError:
     secret = open(os.path.join(BASE_DIR, 'ADMIN_URL'), 'w')
     secret.write(generated_key)
     secret.close()
-    ADMIN_URL = generated_key
+    ADMIN_URdL = generated_key
 
 SUPERADMIN = 'SU'
 ADMIN = 'ADM'
 USER = 'USR'
+FACULTY = 'FCT'
+STUDENT = 'STD'
 
 USER_TYPE_CHOICES = (
-    (SUPERADMIN, 'Super Admin'),
     (ADMIN, 'Admin'),
-    (USER, 'User'),
+    (FACULTY, 'Faculty'),
+    (STUDENT, 'Student'),
 )
 
 USER_DASHBOARD_ROOTS = {
     SUPERADMIN: ADMIN_URL,
     ADMIN: 'admin',
-    USER: '',
+    USER: 'user',
+    FACULTY: 'faculty',
+    STUDENT: 'student',
 }

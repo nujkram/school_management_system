@@ -1,0 +1,23 @@
+{% load static %}
+<div class="sidebar" data-color="blue">
+    <!--
+      Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
+  -->
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="{% if menu_subsection == 'admin_dashboard' %}active{% endif %}">
+                <a href="{% url 'admin_dashboard_home_view' %}">
+                    <i class="tim-icons icon-components"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="{% if menu_subsection == 'account' %}active{% endif %}">
+                <a href="#">
+                    <i class="material-icons">users</i>
+                    <p>Accounts</p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</div>

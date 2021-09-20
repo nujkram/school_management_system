@@ -1,0 +1,53 @@
+{% extends 'admin_dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header_css %} {% endblock %}
+{% block header_js %} {% endblock %}
+
+{% block page_wrapper_contents %}
+    {% if messages %} {% for m in messages %}
+        <div class="alert alert-{{ m.tags }} ">{{ m }}</div>
+    {% endfor %} {% endif %}
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="https://via.placeholder.com/320x180" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+
+    <!-- Datatables -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datatable').DataTable({
+                bFilter: false,
+                bLengthChange: false,
+                pageLength: 10,
+            });
+        });
+    </script>
+    <!-- /Datatables -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+{% endblock %}

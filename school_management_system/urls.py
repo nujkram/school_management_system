@@ -53,6 +53,10 @@ urlpatterns = [
 
     path('profile/', include('profiles.urls')),
     path('accounts/', include('accounts.urls')),
+    path('locations/', include('locations.urls')),
+    path('admin/', include('admin_dashboard.urls')),
+    path('faculty/', include('faculty_dashboard.urls')),
+    path('student/', include('student_dashboard.urls')),
 
 
     # dashboards
