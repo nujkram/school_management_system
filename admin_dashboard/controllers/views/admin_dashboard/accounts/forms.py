@@ -3,7 +3,7 @@ from accounts.models.account.models import Account
 from django.contrib.auth.forms import UserCreationForm
 
 
-class AccountRegisterForm(UserCreationForm):
+class AccountForm(UserCreationForm):
     class Meta:
         model = Account
         fields = (
