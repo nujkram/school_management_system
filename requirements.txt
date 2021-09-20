@@ -29,6 +29,7 @@ django-mathfilters
 django-phonenumber-field
 django-split-settings
 djangorestframework
+drf_yasg
 factory-boy
 Faker
 gunicorn
