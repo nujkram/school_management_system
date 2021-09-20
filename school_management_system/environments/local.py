@@ -257,10 +257,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
-STATIC_URL = f'{SITE_URL}/static/'
+STATIC_URL = f'static/'
 STATIC_ROOT = '/var/www/html/static/'
 
-MEDIA_URL = f'{SITE_URL}/media/'
+MEDIA_URL = f'media/'
 MEDIA_ROOT = '/var/www/html/media/'
 TEMPORARY_MEDIA = '{}temp'.format(MEDIA_ROOT)
 
