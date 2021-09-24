@@ -57,6 +57,10 @@ urlpatterns = [
     path('admin/', include('admin_dashboard.urls')),
     path('faculty/', include('faculty_dashboard.urls')),
     path('student/', include('student_dashboard.urls')),
+    path('academic_year/', include('academic_years.urls')),
+    path('department/', include('departments.urls')),
+    path('course/', include('courses.urls')),
+    path('subject/', include('subjects.urls')),
 
 
     # dashboards
