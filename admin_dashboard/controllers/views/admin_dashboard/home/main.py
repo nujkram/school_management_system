@@ -1,6 +1,6 @@
 """
-Fix It Project
-Description for Fix It Project
+School Management System Project
+Description for School Management System Project
 
 Author: empty
 Version: 0.0.1
