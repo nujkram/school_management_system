@@ -5,6 +5,8 @@ from admin_dashboard.controllers.views.admin_dashboard.accounts import main as a
 from admin_dashboard.controllers.views.admin_dashboard.academic_years import main as academic_years_views
 from admin_dashboard.controllers.views.admin_dashboard.departments import main as departments_views
 from admin_dashboard.controllers.views.admin_dashboard.courses import main as courses_views
+from admin_dashboard.controllers.views.admin_dashboard.year_levels import main as year_levels_views
+from admin_dashboard.controllers.views.admin_dashboard.sections import main as sections_views
 from admin_dashboard.controllers.views.admin_dashboard.subjects import main as subjects_views
 
 version = 'api/v1'
@@ -130,6 +132,62 @@ urlpatterns += [
         'course/<course>/delete',
         courses_views.AdminDashboardCourseDeleteView.as_view(),
         name='admin_dashboard_courses_delete'
+    )
+]
+
+urlpatterns += [
+    path(
+        'year_level/list',
+        year_levels_views.AdminDashboardYearLevelListView.as_view(),
+        name='admin_dashboard_year_levels_list'
+    ),
+    path(
+        'year_level/<year_level>/detail',
+        year_levels_views.AdminDashboardYearLevelDetailView.as_view(),
+        name='admin_dashboard_year_levels_detail'
+    ),
+    path(
+        'year_level/create',
+        year_levels_views.AdminDashboardYearLevelCreateView.as_view(),
+        name='admin_dashboard_year_levels_create'
+    ),
+    path(
+        'year_level/<year_level>/update',
+        year_levels_views.AdminDashboardYearLevelUpdateView.as_view(),
+        name='admin_dashboard_year_levels_update'
+    ),
+    path(
+        'year_level/<year_level>/delete',
+        year_levels_views.AdminDashboardYearLevelDeleteView.as_view(),
+        name='admin_dashboard_year_levels_delete'
+    )
+]
+
+urlpatterns += [
+    path(
+        'section/list',
+        sections_views.AdminDashboardSectionListView.as_view(),
+        name='admin_dashboard_sections_list'
+    ),
+    path(
+        'section/<section>/detail',
+        sections_views.AdminDashboardSectionDetailView.as_view(),
+        name='admin_dashboard_sections_detail'
+    ),
+    path(
+        'section/create',
+        sections_views.AdminDashboardSectionCreateView.as_view(),
+        name='admin_dashboard_sections_create'
+    ),
+    path(
+        'section/<section>/update',
+        sections_views.AdminDashboardSectionUpdateView.as_view(),
+        name='admin_dashboard_sections_update'
+    ),
+    path(
+        'section/<section>/delete',
+        sections_views.AdminDashboardSectionDeleteView.as_view(),
+        name='admin_dashboard_sections_delete'
     )
 ]
 
