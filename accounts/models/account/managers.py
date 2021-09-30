@@ -3,12 +3,28 @@ from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
 from django.db import models
 from django.utils.text import slugify
-from .constants import USER, ADMIN, SUPERADMIN
+from .constants import USER, ADMIN, SUPERADMIN, FACULTY, STUDENT
 
 
 class AccountQuerySet(models.QuerySet):
     def actives(self):
-        return self.filter(is_active=True)
+        return self.filter(is_active=True).exclude(user_type=SUPERADMIN)
+
+    def inactive(self):
+        return self.filter(is_active=False)
+
+    def admin(self):
+        return self.filter(user_type=ADMIN)
+
+    def faculty(self):
+        return self.filter(user_type=FACULTY)
+
+    def student(self):
+        return self.filter(user_type=STUDENT)
+
+    def latest(self):
+        return self.order_by('-created')
+
 
 class AccountManager(BaseUserManager):
     def get_queryset(self):
@@ -16,6 +32,18 @@ class AccountManager(BaseUserManager):
 
     def actives(self):
         return self.get_queryset().actives()
+
+    def inactive(self):
+        return self.get_queryset().inactive()
+
+    def admins(self):
+        return self.get_queryset().admin()
+
+    def faculties(self):
+        return self.get_queryset().faculty()
+
+    def students(self):
+        return self.get_queryset().student()
 
     def create_user(self, username=None, password=None, email=None, user_type=USER):
         """
