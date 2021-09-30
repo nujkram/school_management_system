@@ -38,6 +38,7 @@ class Subject(models.Model):
     slug = extension_fields.AutoSlugField(populate_from='name', blank=True)
 
     # === Properties ===
+    code = models.CharField(max_length=24, blank=True)
 
     # === State ===
     is_active = models.BooleanField(default=True)
@@ -50,6 +51,13 @@ class Subject(models.Model):
         db_index=False,
         on_delete=models.CASCADE,
         related_name='subjects_course'
+    )
+    year_level = models.ForeignKey(
+        'year_levels.YearLevel',
+        null=True,
+        db_index=False,
+        on_delete=models.SET_NULL,
+        related_name='subjects_year_level'
     )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,

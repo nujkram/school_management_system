@@ -38,7 +38,7 @@ class Course(models.Model):
     slug = extension_fields.AutoSlugField(populate_from='name', blank=True)
 
     # === Properties ===
-    
+    code = models.CharField(max_length=7, blank=True, null=True)
 
     # === State ===
     is_active = models.BooleanField(default=True)

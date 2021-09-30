@@ -58,5 +58,7 @@ INSTALLED_APPS += [
     'academic_years',
     'departments',
     'courses',
+    'year_levels',
+    'sections',
     'subjects',
 ]

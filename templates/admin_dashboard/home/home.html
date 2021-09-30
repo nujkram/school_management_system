@@ -15,19 +15,65 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 col-sm-4">
-            <div class="card" style="width: 20rem;">
-                <img class="card-img-top" src="https://via.placeholder.com/320x180" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Departments</h4>
+                            <p>
+                                {% for obj in departments.actives %}
+
+                                {% endfor %}
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-primary">ACTIVE: {{ departments.actives.count }}</span>
+                            <span class="badge badge-primary">INACTIVE: {{ departments.inactive.count }}</span>
+                            <span class="badge badge-primary">TOTAL: {{ departments.actives.count|add:departments.inactive.count }}</span>
+                            <a href="#"><span class="badge badge-info">VIEW ALL</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                           <h4 class="card-title">Courses</h4>
+                            <p>
+
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-primary">ACTIVE: 0</span>
+                            <span class="badge badge-primary">INACTIVE: 0</span>
+                            <span class="badge badge-primary">TOTAL: 0</span>
+                            <a href="#"><span class="badge badge-info">VIEW ALL</span></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4 col-sm-4"></div>
+        <div class="col-md-4">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title">Users</h4>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary btn-sm">View</a>
+                </div>
+                <div class="card-footer">
+                    <span class="badge badge-primary">ADMIN: 0</span>
+                    <span class="badge badge-primary">FACULTY: 0</span>
+                    <span class="badge badge-primary">STUDENT: 0</span>
+                </div>
+            </div>
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <h4 class="card-title">New Users</h4>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 

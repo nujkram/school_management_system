@@ -5,4 +5,4 @@ from subjects.models.subject.models import Subject
 class SubjectForm(forms.ModelForm):
     class Meta:
         model = Subject
-        fields = '__all__'
+        fields = ('name', 'code', 'course', 'year_level')

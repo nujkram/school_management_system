@@ -30,6 +30,9 @@
                     <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Code</th>
+                        <th>Department</th>
+                        <th>Status</th>
                         <th class="text-right">Actions</th>
                     </tr>
                     </thead>
@@ -37,6 +40,9 @@
                     {% for obj in objects %}
                         <tr>
                             <td>{{ obj }}</td>
+                            <td>{{ obj.code }}</td>
+                            <td>{{ obj.department }}</td>
+                            <td>{% if obj.is_active %}<span class="text-success">Active</span>{% else %}<span class="text-success">Inactive</span>{% endif %}</td>
                             <td class="td-actions text-right">
                                 <a class="btn btn-info btn-sm btn-icon" href="{% url 'admin_dashboard_courses_detail' obj.pk %}">
                                     <i class="tim-icons icon-badge"></i>
