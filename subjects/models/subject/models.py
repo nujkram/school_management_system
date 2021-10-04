@@ -45,12 +45,12 @@ class Subject(models.Model):
     meta = models.JSONField(default=dict, blank=True, null=True)
 
     # === Relationship Fields ===
-    course = models.ForeignKey(
-        'courses.Course',
+    department = models.ForeignKey(
+        'departments.Department',
         null=True,
         db_index=False,
         on_delete=models.CASCADE,
-        related_name='subjects_course'
+        related_name='subjects_department'
     )
     year_level = models.ForeignKey(
         'year_levels.YearLevel',

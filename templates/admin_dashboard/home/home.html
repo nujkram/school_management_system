@@ -38,18 +38,18 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Courses</h4>
-                            {% for obj in courses.actives %}
+                            <h4 class="card-title">Subjects</h4>
+                            {% for obj in subjects.actives %}
                                 <p class="card-text">
-                                    <a href="{% url 'admin_dashboard_courses_detail' obj.pk %}">{{ obj }}</a>
+                                    <a href="{% url 'admin_dashboard_subjects_detail' obj.pk %}">{{ obj }}</a>
                                 </p>
                             {% endfor %}
                         </div>
                         <div class="card-footer">
-                            <span class="badge badge-primary">ACTIVE: {{ courses.actives.count }}</span>
-                            <span class="badge badge-primary">INACTIVE: {{ courses.inactive.count }}</span>
-                            <span class="badge badge-primary">TOTAL: {{ courses.actives.count|add:courses.inactive.count }}</span>
-                            <a href="{% url 'admin_dashboard_courses_list' %}"><span
+                            <span class="badge badge-primary">ACTIVE: {{ subjects.actives.count }}</span>
+                            <span class="badge badge-primary">INACTIVE: {{ subjects.inactive.count }}</span>
+                            <span class="badge badge-primary">TOTAL: {{ subjects.actives.count|add:subjects.inactive.count }}</span>
+                            <a href="{% url 'admin_dashboard_subjects_list' %}"><span
                                     class="badge badge-info">VIEW ALL</span></a>
                         </div>
                     </div>

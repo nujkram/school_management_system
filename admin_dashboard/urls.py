@@ -1,13 +1,12 @@
 from django.urls import path
 
-from admin_dashboard.controllers.views.admin_dashboard.home import main as home_views
-from admin_dashboard.controllers.views.admin_dashboard.accounts import main as accounts_views
 from admin_dashboard.controllers.views.admin_dashboard.academic_years import main as academic_years_views
+from admin_dashboard.controllers.views.admin_dashboard.accounts import main as accounts_views
 from admin_dashboard.controllers.views.admin_dashboard.departments import main as departments_views
-from admin_dashboard.controllers.views.admin_dashboard.courses import main as courses_views
-from admin_dashboard.controllers.views.admin_dashboard.year_levels import main as year_levels_views
+from admin_dashboard.controllers.views.admin_dashboard.home import main as home_views
 from admin_dashboard.controllers.views.admin_dashboard.sections import main as sections_views
 from admin_dashboard.controllers.views.admin_dashboard.subjects import main as subjects_views
+from admin_dashboard.controllers.views.admin_dashboard.year_levels import main as year_levels_views
 
 version = 'api/v1'
 
@@ -104,34 +103,6 @@ urlpatterns += [
         'department/<department>/delete',
         departments_views.AdminDashboardDepartmentDeleteView.as_view(),
         name='admin_dashboard_departments_delete'
-    )
-]
-
-urlpatterns += [
-    path(
-        'course/list',
-        courses_views.AdminDashboardCourseListView.as_view(),
-        name='admin_dashboard_courses_list'
-    ),
-    path(
-        'course/<course>/detail',
-        courses_views.AdminDashboardCourseDetailView.as_view(),
-        name='admin_dashboard_courses_detail'
-    ),
-    path(
-        'course/create',
-        courses_views.AdminDashboardCourseCreateView.as_view(),
-        name='admin_dashboard_courses_create'
-    ),
-    path(
-        'course/<course>/update',
-        courses_views.AdminDashboardCourseUpdateView.as_view(),
-        name='admin_dashboard_courses_update'
-    ),
-    path(
-        'course/<course>/delete',
-        courses_views.AdminDashboardCourseDeleteView.as_view(),
-        name='admin_dashboard_courses_delete'
     )
 ]
 

@@ -11,8 +11,8 @@ from django.views import View
 
 from accounts.mixins.user_type_mixins import IsAdminViewMixin
 from accounts.models import Account
-from courses.models.course import Course
 from departments.models.department import Department
+from subjects.models.subject import Subject
 
 
 class AdminDashboardHomeView(LoginRequiredMixin, IsAdminViewMixin, View):
@@ -30,7 +30,7 @@ class AdminDashboardHomeView(LoginRequiredMixin, IsAdminViewMixin, View):
 
     def get(self, request, *args, **kwargs):
         accounts = Account.objects.actives()
-        courses = Course.objects.all()
+        subjects = Subject.objects.all()
         departments = Department.objects.all()
 
         context = {
@@ -39,7 +39,7 @@ class AdminDashboardHomeView(LoginRequiredMixin, IsAdminViewMixin, View):
             "menu_subsection": "admin_dashboard",
             "menu_action": "home",
             "accounts": accounts,
-            "courses": courses,
+            "subjects": subjects,
             "departments": departments,
         }
 
