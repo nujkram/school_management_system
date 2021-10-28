@@ -59,7 +59,7 @@ urlpatterns = [
     path('student/', include('student_dashboard.urls')),
     path('academic_year/', include('academic_years.urls')),
     path('department/', include('departments.urls')),
-    path('year_level/', include('year_levels.urls')),
+    path('grade_level/', include('grade_levels.urls')),
     path('section/', include('sections.urls')),
     path('subject/', include('subjects.urls')),
 

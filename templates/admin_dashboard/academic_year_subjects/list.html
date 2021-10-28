@@ -7,15 +7,15 @@
 {% block page_wrapper_contents %}
     <div class="card mb-3">
         <div class="card-header">
-            <h4 class="card-title float-left">{{ page_title }}</h4>
-            <a class="btn btn-primary btn-sm float-left ml-2 pt-0 pb-1"
-               href="{% url 'admin_dashboard_academic_years_create' %}"><i class="tim-icons icon-simple-add"></i></a>
+            <h4 class="card-title float-left">{{ obj }}</h4>
+            <a class="btn btn-primary btn-sm float-left ml-2 pt-0 pb-1" href="{% url 'admin_dashboard_academic_year_subjects_create' %}?academic_year={{obj.academic_year.pk}}"><i class="tim-icons icon-simple-add"></i></a>
         </div>
         <div class="card-body">
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'admin_dashboard_home_view' %}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+                    <li class="breadcrumb-item"><a href="{% url 'admin_dashboard_accounts_list' %}">Academic Years</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ obj.subject }}</li>
                 </ol>
             </nav>
         </div>
@@ -23,14 +23,18 @@
 
     <div class="card">
         <div class="card-body">
-            {% if messages %} {% for m in messages %}
+            {% if messages %} {% for m in messages %} 
                 <div class="alert alert-{{ m.tags }}">{{ m }}</div>
-            {% endfor %} {% endif %}
+            {% endfor %} {% endif %} 
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>CODE</th>
+                        <th>Subject</th>
+                        <th>Grade</th>
+                        <th>Section</th>
+                        <th>Teacher</th>
                         <th class="text-right">Actions</th>
                     </tr>
                     </thead>
@@ -38,22 +42,19 @@
                     {% for obj in objects %}
                         <tr>
                             <td>{{ obj }}</td>
+                            <td>{{ obj.subject }}</td>
+                            <td>{{ obj.grade }}</td>
+                            <td>{{ obj.section }}</td>
+                            <td>{{ obj.faculty }}</td>
                             <td class="td-actions text-right">
-                                <a class="btn btn-info btn-sm btn-icon" title="Details"
-                                   href="{% url 'admin_dashboard_academic_years_detail' obj.pk %}">
+                                <a class="btn btn-info btn-sm btn-icon" href="{% url 'admin_dashboard_academic_year_subjects_detail' obj.pk %}">
                                     <i class="tim-icons icon-badge"></i>
                                 </a>
-                                <a class="btn btn-info btn-sm btn-icon" title="Create"
-                                   href="{% url 'admin_dashboard_academic_year_subjects_create' %}?academic_year={{obj.academic_year.pk}}">
-                                    <i class="tim-icons icon-simple-add"></i>
-                                </a>
-                                <a class="btn btn-info btn-sm btn-icon" title="Subjects"
-                                   href="{% url 'admin_dashboard_academic_year_subjects_list' obj.pk %}">
-                                    <i class="tim-icons icon-book-bookmark"></i>
-                                </a>
-                                <a class="btn btn-success btn-sm btn-icon" title="Update"
-                                   href="{% url 'admin_dashboard_academic_years_update' obj.pk %}">
+                                <a class="btn btn-success btn-sm btn-icon" href="{% url 'admin_dashboard_academic_year_subjects_update' obj.pk %}">
                                     <i class="tim-icons icon-pencil"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm btn-icon" href="{% url 'admin_dashboard_academic_year_subjects_delete' obj.pk %}">
+                                    <i class="tim-icons icon-simple-remove"></i>
                                 </a>
                             </td>
                         </tr>

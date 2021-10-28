@@ -81,7 +81,7 @@ class Account(AbstractBaseUser):
     REQUIRED_FIELDS = ['username']
 
     def __str__(self):
-        return self.username
+        return self.profile.get_full_name()
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"

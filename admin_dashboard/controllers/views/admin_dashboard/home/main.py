@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View
 
+from academic_years.models import AcademicYear
 from accounts.mixins.user_type_mixins import IsAdminViewMixin
 from accounts.models import Account
 from departments.models.department import Department
@@ -32,6 +33,7 @@ class AdminDashboardHomeView(LoginRequiredMixin, IsAdminViewMixin, View):
         accounts = Account.objects.actives()
         subjects = Subject.objects.all()
         departments = Department.objects.all()
+        academic_years = AcademicYear.objects.actives()
 
         context = {
             "page_title": f"Admin Dashboard",
@@ -41,6 +43,7 @@ class AdminDashboardHomeView(LoginRequiredMixin, IsAdminViewMixin, View):
             "accounts": accounts,
             "subjects": subjects,
             "departments": departments,
+            "academic_years": academic_years,
         }
 
         return render(request, "admin_dashboard/home/home.html", context)

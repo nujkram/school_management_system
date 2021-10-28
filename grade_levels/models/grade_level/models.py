@@ -1,10 +1,10 @@
 """
 School Management System
-Subject 0.0.1
-Subject models
-Subject
+Grade Level 0.0.1
+Grade Level models
+Grade Level
 
-Author: Christian
+Author: Empty
 """
 
 import uuid as uuid
@@ -24,10 +24,10 @@ from django.apps import apps
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
-from .managers import SubjectManager as manager
+from .managers import GradeLevelManager as manager
 
 
-class Subject(models.Model):
+class GradeLevel(models.Model):
     # === Basic ===
     created = models.DateTimeField(null=False, auto_now_add=True)
     updated = models.DateTimeField(null=False, auto_now=True)
@@ -38,57 +38,42 @@ class Subject(models.Model):
     slug = extension_fields.AutoSlugField(populate_from='name', blank=True)
 
     # === Properties ===
-    code = models.CharField(max_length=24, blank=True)
+    code = models.CharField(max_length=4, null=True, blank=True)
 
     # === State ===
     is_active = models.BooleanField(default=True)
     meta = models.JSONField(default=dict, blank=True, null=True)
 
     # === Relationship Fields ===
-    department = models.ForeignKey(
-        'departments.Department',
-        null=True,
-        db_index=False,
-        on_delete=models.CASCADE,
-        related_name='subjects_department'
-    )
-    grade_level = models.ForeignKey(
-        'grade_levels.GradeLevel',
-        null=True,
-        db_index=False,
-        on_delete=models.SET_NULL,
-        related_name='subjects_year_level'
-    )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
         db_index=False,
         on_delete=models.SET_NULL,
-        related_name='subjects_created_by_user'
+        related_name='grade_levels_created_by_user'
     )
     last_updated_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
         db_index=False,
         on_delete=models.SET_NULL,
-        related_name='subjects_updated_by_user'
+        related_name='grade_levels_updated_by_user'
     )
 
     objects = manager()
 
     class Meta:
         ordering = ('-created',)
-        verbose_name = 'Subject'
-        verbose_name_plural = 'Subjects'
-
+        verbose_name = 'Grade Level'
+        verbose_name_plural = 'Grade Levels'
+    
     ################################################################################
     # === Magic Methods ===
     ################################################################################
     def __str__(self):
-        return self.name
+        return self.name    
 
-        ################################################################################
-
+    ################################################################################
     # === Model overrides ===
     ################################################################################
     def clean(self, *args, **kwargs):
@@ -107,11 +92,11 @@ class Subject(models.Model):
 ################################################################################
 # === Signals ===
 ################################################################################
-@receiver(post_save, sender=Subject)
+@receiver(post_save, sender=GradeLevel)
 def scaffold_post_save(sender, instance=None, created=False, **kwargs):
     pass
 
 
-@receiver(pre_save, sender=Subject)
+@receiver(pre_save, sender=GradeLevel)
 def scaffold_pre_save(sender, instance=None, created=False, **kwargs):
     pass

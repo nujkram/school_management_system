@@ -1,12 +1,13 @@
 from django.urls import path
 
 from admin_dashboard.controllers.views.admin_dashboard.academic_years import main as academic_years_views
+from admin_dashboard.controllers.views.admin_dashboard.academic_year_subjects import main as academic_year_subjects_views
 from admin_dashboard.controllers.views.admin_dashboard.accounts import main as accounts_views
 from admin_dashboard.controllers.views.admin_dashboard.departments import main as departments_views
 from admin_dashboard.controllers.views.admin_dashboard.home import main as home_views
 from admin_dashboard.controllers.views.admin_dashboard.sections import main as sections_views
 from admin_dashboard.controllers.views.admin_dashboard.subjects import main as subjects_views
-from admin_dashboard.controllers.views.admin_dashboard.year_levels import main as year_levels_views
+from admin_dashboard.controllers.views.admin_dashboard.grade_levels import main as grade_levels_views
 
 version = 'api/v1'
 
@@ -80,6 +81,34 @@ urlpatterns += [
 
 urlpatterns += [
     path(
+        'academic_year_subject/<academic_year_subject>/list',
+        academic_year_subjects_views.AdminDashboardAcademicYearSubjectListView.as_view(),
+        name='admin_dashboard_academic_year_subjects_list'
+    ),
+    path(
+        'academic_year_subject/<academic_year_subject>/detail',
+        academic_year_subjects_views.AdminDashboardAcademicYearSubjectDetailView.as_view(),
+        name='admin_dashboard_academic_year_subjects_detail'
+    ),
+    path(
+        'academic_year_subject/create',
+        academic_year_subjects_views.AdminDashboardAcademicYearSubjectCreateView.as_view(),
+        name='admin_dashboard_academic_year_subjects_create'
+    ),
+    path(
+        'academic_year_subject/<academic_year_subject>/update',
+        academic_year_subjects_views.AdminDashboardAcademicYearSubjectUpdateView.as_view(),
+        name='admin_dashboard_academic_year_subjects_update'
+    ),
+    path(
+        'academic_year_subject/<academic_year_subject>/delete',
+        academic_year_subjects_views.AdminDashboardAcademicYearSubjectDeleteView.as_view(),
+        name='admin_dashboard_academic_year_subjects_delete'
+    )
+]
+
+urlpatterns += [
+    path(
         'department/list',
         departments_views.AdminDashboardDepartmentListView.as_view(),
         name='admin_dashboard_departments_list'
@@ -108,29 +137,29 @@ urlpatterns += [
 
 urlpatterns += [
     path(
-        'year_level/list',
-        year_levels_views.AdminDashboardYearLevelListView.as_view(),
-        name='admin_dashboard_year_levels_list'
+        'grade_level/list',
+        grade_levels_views.AdminDashboardGradeLevelListView.as_view(),
+        name='admin_dashboard_grade_levels_list'
     ),
     path(
-        'year_level/<year_level>/detail',
-        year_levels_views.AdminDashboardYearLevelDetailView.as_view(),
-        name='admin_dashboard_year_levels_detail'
+        'grade_level/<grade_level>/detail',
+        grade_levels_views.AdminDashboardGradeLevelDetailView.as_view(),
+        name='admin_dashboard_grade_levels_detail'
     ),
     path(
-        'year_level/create',
-        year_levels_views.AdminDashboardYearLevelCreateView.as_view(),
-        name='admin_dashboard_year_levels_create'
+        'grade_level/create',
+        grade_levels_views.AdminDashboardGradeLevelCreateView.as_view(),
+        name='admin_dashboard_grade_levels_create'
     ),
     path(
-        'year_level/<year_level>/update',
-        year_levels_views.AdminDashboardYearLevelUpdateView.as_view(),
-        name='admin_dashboard_year_levels_update'
+        'grade_level/<grade_level>/update',
+        grade_levels_views.AdminDashboardGradeLevelUpdateView.as_view(),
+        name='admin_dashboard_grade_levels_update'
     ),
     path(
-        'year_level/<year_level>/delete',
-        year_levels_views.AdminDashboardYearLevelDeleteView.as_view(),
-        name='admin_dashboard_year_levels_delete'
+        'grade_level/<grade_level>/delete',
+        grade_levels_views.AdminDashboardGradeLevelDeleteView.as_view(),
+        name='admin_dashboard_grade_levels_delete'
     )
 ]
 
