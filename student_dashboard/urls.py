@@ -11,7 +11,7 @@ urlpatterns = [
     path(
         '',
         home_views.StudentDashboardHomeView.as_view(),
-        name='faculty_dashboard_home_view'
+        name='student_dashboard_home_view'
     ),
 ]
 
