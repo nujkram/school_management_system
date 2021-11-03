@@ -11,10 +11,10 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="{% if menu_subsection == 'account' %}active{% endif %}">
-                <a href="#">
-                    <i class="material-icons">users</i>
-                    <p>Accounts</p>
+            <li class="{% if menu_subsection == 'academic_year' %}active{% endif %}">
+                <a href="{% url 'faculty_dashboard_academic_years_list' %}">
+                    <i class="material-icons">date_range</i>
+                    <p>Academic Years</p>
                 </a>
             </li>
 

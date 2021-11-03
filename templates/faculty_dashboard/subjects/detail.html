@@ -1,0 +1,104 @@
+{% extends 'faculty_dashboard/base.html' %}
+{% load static %}
+
+{% block header_css %} {% endblock %}
+{% block header_js %} {% endblock %}
+
+{% block page_wrapper_contents %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <h4 class="card-title">{{ page_title }}</h4>
+        </div>
+        <div class="card-body">
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_home_view' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_academic_years_list' %}">Academic
+                        Years</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="{% url 'faculty_dashboard_academic_year_subjects_list' academic_year_subject.academic_year.pk %}">{{ academic_year_subject.academic_year }}</a>
+                    </li>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+                </ol>
+            </nav>
+            {% if messages %} {% for m in messages %}
+                <div class="alert alert-{{ m.tags }} ">{{ m }}</div>
+            {% endfor %} {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category">&nbsp;</h5>
+                    <h2 class="card-title">{{ obj.name }}</h2>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ obj.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Name</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category">&nbsp;</h5>
+                    <h2 class="card-title">Status</h2>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        {% if obj.is_active %}
+                            <strong class="text-primary">Active</strong>
+                        {% else %}
+                            <strong class="text-secondary">Inactive</strong>
+                        {% endif %}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Status</h6>
+                    <h4 class="card-title">{{ obj.created }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Date Created</h6>
+                    <h4 class="card-title">{{ obj.updated }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Date Last Updated</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category">&nbsp;</h5>
+                    <h2 class="card-title">Students Enrolled</h2>
+                </div>
+                <div class="card-body">
+                    {% if subject_students %}
+                        <ul class="list-group">
+                            {% for obj in subject_students %}
+                                <li class="list-group-item">{{ obj.student.profile.get_full_name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <h4 class="card-title">No Student Enrolled in this subject</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Actions</h4>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-success btn-sm btn-icon"
+               href="{% url 'faculty_dashboard_subject_students_create' %}?academic_year_subject={{ academic_year_subject.pk }}"
+               title="Add Student">
+                <i class="tim-icons icon-simple-add"></i>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

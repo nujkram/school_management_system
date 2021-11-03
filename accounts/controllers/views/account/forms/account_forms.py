@@ -17,10 +17,11 @@ class CompanyUserRegistrationForm(UserCreationForm):
     password = ReadOnlyPasswordHashField(
         label="Password",
         help_text=
-            f"Raw passwords are not stored, so there is no way to see this "
-            f"user's password, but you can change the password using "
-            f"<a href='/profile/account/password'>this form</a>."
+        f"Raw passwords are not stored, so there is no way to see this "
+        f"user's password, but you can change the password using "
+        f"<a href='/profile/account/password'>this form</a>."
     )
+
     class Meta:
         model = Account
         fields = (
