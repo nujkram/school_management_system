@@ -55,9 +55,9 @@ INSTALLED_APPS += [
     'admin_dashboard',
     'faculty_dashboard',
     'student_dashboard',
+    'grade_levels',
     'academic_years',
     'departments',
-    'grade_levels',
     'sections',
     'subjects',
 ]
