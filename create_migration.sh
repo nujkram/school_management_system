@@ -10,3 +10,4 @@ mkdir -p courses/migrations && touch courses/migrations/__init__.py
 mkdir -p grade_levels/migrations && touch grade_levels/migrations/__init__.py
 mkdir -p sections/migrations && touch sections/migrations/__init__.py
 mkdir -p subjects/migrations && touch subjects/migrations/__init__.py
+mkdir -p topics/migrations && touch topics/migrations/__init__.py

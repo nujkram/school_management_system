@@ -62,6 +62,7 @@ urlpatterns = [
     path('grade_level/', include('grade_levels.urls')),
     path('section/', include('sections.urls')),
     path('subject/', include('subjects.urls')),
+    path('topic/', include('topics.urls')),
 
 
     # dashboards

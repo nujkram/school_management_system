@@ -1,8 +1,8 @@
 """
 School Management System
-Academic Year 0.0.1
-Academic Year Subject models
-Academic Year Subject
+Topic 0.0.1
+Topic models
+Topic
 
 Author: Empty
 """
@@ -24,88 +24,69 @@ from django.apps import apps
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
-from accounts.models.account.constants import FACULTY
-from .managers import AcademicYearSubjectManager as manager
+from .managers import TopicManager as manager
 
 
-class AcademicYearSubject(models.Model):
+class Topic(models.Model):
     # === Basic ===
     created = models.DateTimeField(null=False, auto_now_add=True)
     updated = models.DateTimeField(null=False, auto_now=True)
 
     # === Identifiers ===
+    name = models.CharField(max_length=150)
+    uuid = models.UUIDField(unique=True, default=uuid.uuid4, null=True, editable=True)
+    slug = extension_fields.AutoSlugField(populate_from='name', blank=True)
 
     # === Properties ===
-    
+    description = models.CharField(max_length=255, null=True, blank=True)
+    order = models.PositiveSmallIntegerField(null=True, blank=True)
 
     # === State ===
     is_active = models.BooleanField(default=True)
     meta = models.JSONField(default=dict, blank=True, null=True)
 
     # === Relationship Fields ===
-    academic_year = models.ForeignKey(
-        'academic_years.AcademicYear',
-        null=False,
+    academic_year_subject = models.ForeignKey(
+        'academic_years.AcademicYearSubject',
+        null=True,
         db_index=False,
-        on_delete=models.CASCADE,
-        related_name='academic_year_subjects'
-    )
-    grade_level = models.ForeignKey(
-        'grade_levels.GradeLevel',
-        null=False,
-        db_index=False,
-        on_delete=models.CASCADE,
-        related_name='academic_year_grade_levels_data'
+        on_delete=models.SET_NULL,
+        related_name='topics_academic_year_subject'
     )
     subject = models.ForeignKey(
         'subjects.Subject',
-        null=False,
+        null=True,
         db_index=False,
-        on_delete=models.CASCADE,
-        related_name='academic_year_subjects_data'
-    )
-    faculty = models.ForeignKey(
-        'accounts.Account',
-        null=False,
-        db_index=False,
-        on_delete=models.CASCADE,
-        limit_choices_to={'user_type': FACULTY},
-        related_name='academic_year_faculty_data'
-    )
-    section = models.ForeignKey(
-        'sections.Section',
-        null=False,
-        db_index=False,
-        on_delete=models.CASCADE,
-        related_name='academic_year_sections_data'
+        on_delete=models.SET_NULL,
+        related_name='topics_subject'
     )
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
         db_index=False,
         on_delete=models.SET_NULL,
-        related_name='academic_year_subjects_created_by_user'
+        related_name='topics_created_by_user'
     )
     last_updated_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
         db_index=False,
         on_delete=models.SET_NULL,
-        related_name='academic_year_subjects_updated_by_user'
+        related_name='topics_updated_by_user'
     )
 
     objects = manager()
 
     class Meta:
         ordering = ('-created',)
-        verbose_name = 'Academic Year Subject'
-        verbose_name_plural = 'Academic Year Subjects'
+        verbose_name = 'Topic'
+        verbose_name_plural = 'Topics'
     
     ################################################################################
     # === Magic Methods ===
     ################################################################################
     def __str__(self):
-        return self.subject.code + " " + self.academic_year.name
+        return self.name    
 
     ################################################################################
     # === Model overrides ===
@@ -126,11 +107,11 @@ class AcademicYearSubject(models.Model):
 ################################################################################
 # === Signals ===
 ################################################################################
-@receiver(post_save, sender=AcademicYearSubject)
+@receiver(post_save, sender=Topic)
 def scaffold_post_save(sender, instance=None, created=False, **kwargs):
     pass
 
 
-@receiver(pre_save, sender=AcademicYearSubject)
+@receiver(pre_save, sender=Topic)
 def scaffold_pre_save(sender, instance=None, created=False, **kwargs):
     pass

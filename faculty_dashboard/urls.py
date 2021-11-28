@@ -4,6 +4,7 @@ from faculty_dashboard.controllers.views.faculty_dashboard.academic_years import
 from faculty_dashboard.controllers.views.faculty_dashboard.academic_year_subjects import main as academic_year_subjects_views
 from faculty_dashboard.controllers.views.faculty_dashboard.subjects import main as subjects_views
 from faculty_dashboard.controllers.views.faculty_dashboard.subject_students import main as subject_students_views
+from faculty_dashboard.controllers.views.faculty_dashboard.topics import main as topics_views
 
 version = 'api/v1'
 
@@ -128,5 +129,33 @@ urlpatterns += [
         'subject_student/<subject_student>/delete',
         subject_students_views.FacultyDashboardSubjectStudentDeleteView.as_view(),
         name='faculty_dashboard_subject_students_delete'
+    )
+]
+
+urlpatterns += [
+    path(
+        'topic/<academic_year_subject>/list',
+        topics_views.FacultyDashboardTopicListView.as_view(),
+        name='faculty_dashboard_topics_list'
+    ),
+    path(
+        'topic/<topic>/detail',
+        topics_views.FacultyDashboardTopicDetailView.as_view(),
+        name='faculty_dashboard_topics_detail'
+    ),
+    path(
+        'topic/create',
+        topics_views.FacultyDashboardTopicCreateView.as_view(),
+        name='faculty_dashboard_topics_create'
+    ),
+    path(
+        'topic/<topic>/update',
+        topics_views.FacultyDashboardTopicUpdateView.as_view(),
+        name='faculty_dashboard_topics_update'
+    ),
+    path(
+        'topic/<topic>/delete',
+        topics_views.FacultyDashboardTopicDeleteView.as_view(),
+        name='faculty_dashboard_topics_delete'
     )
 ]

@@ -60,4 +60,5 @@ INSTALLED_APPS += [
     'departments',
     'sections',
     'subjects',
+    'topics',
 ]
