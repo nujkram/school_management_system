@@ -9,10 +9,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View
 
-from accounts.mixins.user_type_mixins import IsFacultyViewMixin
+from accounts.mixins.user_type_mixins import IsStudentViewMixin
 
 
-class StudentDashboardHomeView(LoginRequiredMixin, IsFacultyViewMixin, View):
+class StudentDashboardHomeView(LoginRequiredMixin, IsStudentViewMixin, View):
     """
     Faculty Dashboard Home.
 
