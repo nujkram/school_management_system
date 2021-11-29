@@ -1,4 +1,4 @@
-{% extends 'faculty_dashboard/base.html' %}
+{% extends 'student_dashboard/base.html' %}
 {% load static %}
 
 {% block header_css %} {% endblock %}
@@ -8,11 +8,12 @@
     <div class="card mb-3">
         <div class="card-header">
             <h4 class="card-title float-left">{{ page_title }}</h4>
+            <a class="btn btn-primary btn-sm float-left ml-2 pt-0 pb-1" href="{% url 'student_dashboard_subjects_create' %}"><i class="tim-icons icon-simple-add"></i></a>
         </div>
         <div class="card-body">
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_home_view' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'student_dashboard_home_view' %}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
                 </ol>
             </nav>
@@ -37,8 +38,14 @@
                         <tr>
                             <td>{{ obj }}</td>
                             <td class="td-actions text-right">
-                                <a class="btn btn-info btn-sm btn-icon" href="{% url 'faculty_dashboard_academic_year_subjects_list' obj.pk %}" title="View Subjects">
-                                    <i class="tim-icons icon-bullet-list-67"></i>
+                                <a class="btn btn-info btn-sm btn-icon" href="{% url 'student_dashboard_subjects_detail' obj.pk %}">
+                                    <i class="tim-icons icon-badge"></i>
+                                </a>
+                                <a class="btn btn-success btn-sm btn-icon" href="{% url 'student_dashboard_subjects_update' obj.pk %}">
+                                    <i class="tim-icons icon-pencil"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm btn-icon" href="{% url 'student_dashboard_subjects_delete' obj.pk %}">
+                                    <i class="tim-icons icon-simple-remove"></i>
                                 </a>
                             </td>
                         </tr>

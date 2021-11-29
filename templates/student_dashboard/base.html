@@ -29,12 +29,12 @@
 <!-- body wrapper -->
 <div class="body-wrapper">
     {% block sidebar %}
-        {% include 'admin_dashboard/common/sidebar.html' %}
+        {% include 'student_dashboard/common/sidebar.html' %}
     {% endblock %}
     {% block main_wrapper %}
         <div class="main-panel">
             {% block navbar %}
-                {% include 'admin_dashboard/common/navbar.html' %}
+                {% include 'student_dashboard/common/navbar.html' %}
             {% endblock %}
             <div class="content">
                 {% block page_wrapper %}
@@ -43,7 +43,7 @@
                 {% endblock %}
             </div>
             {% block page_footer %}
-                {% include 'admin_dashboard/common/footer.html' %}
+                {% include 'student_dashboard/common/footer.html' %}
             {% endblock %}
         </div>
     {% endblock %}

@@ -13,7 +13,14 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_home_view' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_topics_list' obj.pk %}">Topics</a>
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_academic_years_list' %}">Academic
+                        Years</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="{% url 'faculty_dashboard_academic_year_subjects_list' obj.topic.academic_year_subject.pk %}">{{ obj.topic.academic_year_subject.academic_year }}</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_subjects_detail' obj.topic.academic_year_subject.subject.pk %}">Subject: {{ obj.topic.academic_year_subject.subject }}</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_activities_list' %}">Activities</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
                 </ol>
@@ -36,6 +43,13 @@
                     <h6 class="card-subtitle mb-2 text-muted">Name</h6>
                     <h4 class="card-title">{{ obj.description }}</h4>
                     <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+                    <h4 class="card-title">{{ obj.category }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Category</h6>
+                    {% if obj.attached_file %}
+                        <h4 class="card-title"><a href="{{ obj.attached_file.url }}" download> Download Attachment <i
+                                class="tim-icons icon-cloud-download-93"></i></a></h4>
+                        <h6 class="card-subtitle mb-2 text-muted">File</h6>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -68,16 +82,16 @@
             <h4 class="card-title">Actions</h4>
         </div>
         <div class="card-body">
-            <a class="btn btn-info btn-sm btn-icon" href="{% url 'faculty_dashboard_topics_list' obj.pk %}"
+            <a class="btn btn-info btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_list' %}"
                title="View List">
                 <i class="tim-icons icon-bullet-list-67"></i>
             </a>
-            <a class="btn btn-success btn-sm btn-icon" href="{% url 'faculty_dashboard_topics_update' obj.pk %}"
-               title="Update Topic">
+            <a class="btn btn-success btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_update' obj.pk %}"
+               title="Update Activity">
                 <i class="tim-icons icon-settings"></i>
             </a>
-            <a class="btn btn-danger btn-sm btn-icon" href="{% url 'faculty_dashboard_topics_delete' obj.pk %}"
-               title="Delete Topic">
+            <a class="btn btn-danger btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_delete' obj.pk %}"
+               title="Delete Activity">
                 <i class="tim-icons icon-simple-remove"></i>
             </a>
         </div>

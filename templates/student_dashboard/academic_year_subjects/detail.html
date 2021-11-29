@@ -1,4 +1,4 @@
-{% extends 'faculty_dashboard/base.html' %}
+{% extends 'student_dashboard/base.html' %}
 {% load static %}
 
 {% block header_css %} {% endblock %}
@@ -12,13 +12,13 @@
         <div class="card-body">
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_home_view' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_topics_list' obj.pk %}">Topics</a>
+                    <li class="breadcrumb-item"><a href="{% url 'student_dashboard_home_view' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'student_dashboard_academic_year_subjects_list' %}">Academic Year Subjects</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
                 </ol>
             </nav>
-            {% if messages %} {% for m in messages %}
+            {% if messages %} {% for m in messages %} 
                 <div class="alert alert-{{ m.tags }} ">{{ m }}</div>
             {% endfor %} {% endif %}
         </div>
@@ -34,8 +34,6 @@
                 <div class="card-body">
                     <h4 class="card-title">{{ obj.name }}</h4>
                     <h6 class="card-subtitle mb-2 text-muted">Name</h6>
-                    <h4 class="card-title">{{ obj.description }}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
                 </div>
             </div>
         </div>
@@ -68,16 +66,15 @@
             <h4 class="card-title">Actions</h4>
         </div>
         <div class="card-body">
-            <a class="btn btn-info btn-sm btn-icon" href="{% url 'faculty_dashboard_topics_list' obj.pk %}"
-               title="View List">
+            <a class="btn btn-info btn-sm btn-icon" href="{% url 'student_dashboard_academic_year_subjects_list' %}"
+                title="View List">
                 <i class="tim-icons icon-bullet-list-67"></i>
             </a>
-            <a class="btn btn-success btn-sm btn-icon" href="{% url 'faculty_dashboard_topics_update' obj.pk %}"
-               title="Update Topic">
+            <a class="btn btn-success btn-sm btn-icon" href="{% url 'student_dashboard_academic_year_subjects_update' obj.pk %}" title="Update Academic Year Subject">
                 <i class="tim-icons icon-settings"></i>
             </a>
-            <a class="btn btn-danger btn-sm btn-icon" href="{% url 'faculty_dashboard_topics_delete' obj.pk %}"
-               title="Delete Topic">
+            <a class="btn btn-danger btn-sm btn-icon" href="{% url 'student_dashboard_academic_year_subjects_delete' obj.pk %}"
+               title="Delete Academic Year Subject">
                 <i class="tim-icons icon-simple-remove"></i>
             </a>
         </div>

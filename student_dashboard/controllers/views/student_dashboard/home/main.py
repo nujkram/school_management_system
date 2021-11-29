@@ -10,6 +10,7 @@ from django.shortcuts import render
 from django.views import View
 
 from accounts.mixins.user_type_mixins import IsStudentViewMixin
+from subjects.models import SubjectStudent
 
 
 class StudentDashboardHomeView(LoginRequiredMixin, IsStudentViewMixin, View):
@@ -26,12 +27,14 @@ class StudentDashboardHomeView(LoginRequiredMixin, IsStudentViewMixin, View):
     """
 
     def get(self, request, *args, **kwargs):
+        subjects = SubjectStudent.objects.filter(student=request.user)
 
         context = {
             "page_title": f"Student Dashboard",
             "menu_section": "student_dashboard",
             "menu_subsection": "student_dashboard",
             "menu_action": "home",
+            "subjects": subjects,
         }
 
         return render(request, "student_dashboard/home/home.html", context)

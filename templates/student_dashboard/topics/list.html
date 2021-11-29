@@ -1,4 +1,4 @@
-{% extends 'faculty_dashboard/base.html' %}
+{% extends 'student_dashboard/base.html' %}
 {% load static %}
 
 {% block header_css %} {% endblock %}
@@ -8,21 +8,11 @@
     <div class="card mb-3">
         <div class="card-header">
             <h4 class="card-title float-left">{{ page_title }}</h4>
-            <a class="btn btn-primary btn-sm float-left ml-2 pt-0 pb-1"
-               href="{% url 'faculty_dashboard_topics_create' %}?academic_year_subject={{ academic_year_subject.pk }}"><i
-                    class="tim-icons icon-simple-add"></i></a>
         </div>
         <div class="card-body">
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_home_view' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_academic_years_list' %}">Academic
-                        Years</a></li>
-                    <li class="breadcrumb-item"><a
-                            href="{% url 'faculty_dashboard_academic_year_subjects_list' academic_year_subject.pk %}">{{ academic_year_subject.academic_year }}</a>
-                    </li>
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_subjects_detail' subject.pk %}">Subject: {{ academic_year_subject.subject }}</a>
-                    </li>
+                    <li class="breadcrumb-item"><a href="{% url 'student_dashboard_home_view' %}">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
                 </ol>
             </nav>
@@ -50,22 +40,7 @@
 
                             </div>
                             <div class="col-md-6 float-right text-right">
-                                <a class="btn btn-info btn-sm btn-icon" title="Add Activity"
-                                   href="{% url 'faculty_dashboard_activities_create' %}?topic={{ obj.pk }}">
-                                    <i class="tim-icons icon-simple-add"></i>
-                                </a>
-                                <a class="btn btn-info btn-sm btn-icon" title="Details"
-                                   href="{% url 'faculty_dashboard_topics_detail' obj.pk %}">
-                                    <i class="tim-icons icon-badge"></i>
-                                </a>
-                                <a class="btn btn-success btn-sm btn-icon" title="Update"
-                                   href="{% url 'faculty_dashboard_topics_update' obj.pk %}">
-                                    <i class="tim-icons icon-pencil"></i>
-                                </a>
-                                <a class="btn btn-danger btn-sm btn-icon" title="Delete"
-                                   href="{% url 'faculty_dashboard_topics_delete' obj.pk %}">
-                                    <i class="tim-icons icon-simple-remove"></i>
-                                </a>
+
                             </div>
                         </div>
 
@@ -89,16 +64,8 @@
                                                 <td>{{ obj }}</td>
                                                 <td class="td-actions text-right">
                                                     <a class="btn btn-info btn-sm btn-icon" title="Details"
-                                                       href="{% url 'faculty_dashboard_activities_detail' obj.pk %}">
+                                                       href="{% url 'student_dashboard_activities_detail' obj.pk %}">
                                                         <i class="tim-icons icon-badge"></i>
-                                                    </a>
-                                                    <a class="btn btn-success btn-sm btn-icon" title="Update"
-                                                       href="{% url 'faculty_dashboard_activities_update' obj.pk %}">
-                                                        <i class="tim-icons icon-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-danger btn-sm btn-icon" title="Delete"
-                                                       href="{% url 'faculty_dashboard_activities_delete' obj.pk %}">
-                                                        <i class="tim-icons icon-simple-remove"></i>
                                                     </a>
                                                 </td>
                                             </tr>
@@ -117,7 +84,6 @@
             {% endfor %}
         </div>
     </div>
-
 {% endblock %}
 
 {% block scripts %}

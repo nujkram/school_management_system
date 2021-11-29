@@ -5,16 +5,16 @@
   -->
     <div class="sidebar-wrapper">
         <ul class="nav">
-            <li class="{% if menu_subsection == 'admin_dashboard' %}active{% endif %}">
-                <a href="{% url 'admin_dashboard_home_view' %}">
+            <li class="{% if menu_subsection == 'student_dashboard' %}active{% endif %}">
+                <a href="{% url 'student_dashboard_home_view' %}">
                     <i class="tim-icons icon-components"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
-            <li class="{% if menu_subsection == 'account' %}active{% endif %}">
-                <a href="#">
-                    <i class="material-icons">users</i>
-                    <p>Accounts</p>
+            <li class="{% if menu_subsection == 'academic_year' %}active{% endif %}">
+                <a href="{% url 'student_dashboard_academic_years_list' %}">
+                    <i class="material-icons">date_range</i>
+                    <p>Academic Years</p>
                 </a>
             </li>
 

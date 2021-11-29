@@ -15,4 +15,4 @@ class TopicForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TopicForm, self).__init__(*args, **kwargs)
         self.fields['academic_year_subject'].widget.attrs['readonly'] = True
-
+        self.fields['subject'].widget.attrs['readonly'] = True
