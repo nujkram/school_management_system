@@ -63,6 +63,7 @@ urlpatterns = [
     path('section/', include('sections.urls')),
     path('subject/', include('subjects.urls')),
     path('topic/', include('topics.urls')),
+    path('activity/', include('activities.urls')),
 
 
     # dashboards
