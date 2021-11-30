@@ -71,7 +71,8 @@ class AdminDashboardAcademicYearSubjectListView(LoginRequiredMixin, IsAdminViewM
     """
 
     def get(self, request, *args, **kwargs):
-        obj_list = Master.objects.filter(pk=kwargs.get('academic_year_subject'))
+        obj_list = Master.objects.filter(academic_year=kwargs.get('academic_year_subject'))
+        print(kwargs.get('academic_year_subject'))
         obj = obj_list.first()
         paginator = Paginator(obj_list, 50)
         page = request.GET.get('page')
