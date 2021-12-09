@@ -82,7 +82,7 @@ class StudentDashboardAcademicYearSubjectListView(LoginRequiredMixin, IsStudentV
         objs = paginator.get_page(page)
 
         context = {
-            "page_title": f"Academic Year Subjects",
+            "page_title": f"School Year Subjects",
             "menu_section": "student_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "list",
@@ -113,7 +113,7 @@ class StudentDashboardAcademicYearSubjectCreateView(LoginRequiredMixin, IsStuden
     def get(self, request, *args, **kwargs):
         form = MasterForm
         context = {
-            "page_title": "Create new Academic Year Subject",
+            "page_title": "Create new School Year Subject",
             "menu_section": "student_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "create",
@@ -145,7 +145,7 @@ class StudentDashboardAcademicYearSubjectCreateView(LoginRequiredMixin, IsStuden
             )
         else:
             context = {
-                "page_title": "Create new Academic Year Subject",
+                "page_title": "Create new School Year Subject",
                 "menu_section": "student_dashboard",
                 "menu_subsection": "academic_year_subject",
                 "menu_action": "create",
@@ -178,7 +178,7 @@ class StudentDashboardAcademicYearSubjectDetailView(LoginRequiredMixin, IsStuden
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('academic_year_subject', None))
         context = {
-            "page_title": f"Academic Year Subject: {obj}",
+            "page_title": f"School Year Subject: {obj}",
             "menu_section": "student_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "detail",
@@ -209,7 +209,7 @@ class StudentDashboardAcademicYearSubjectUpdateView(LoginRequiredMixin, IsStuden
         form = MasterForm(instance=obj)
 
         context = {
-            "page_title": f"Update Academic Year Subject: {obj}",
+            "page_title": f"Update School Year Subject: {obj}",
             "menu_section": "student_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "update",
@@ -243,7 +243,7 @@ class StudentDashboardAcademicYearSubjectUpdateView(LoginRequiredMixin, IsStuden
             )
         else:
             context = {
-                "page_title": "Update Academic Year Subject: {obj}",
+                "page_title": "Update School Year Subject: {obj}",
                 "menu_section": "student_dashboard",
                 "menu_subsection": "academic_year_subject",
                 "menu_action": "update",
@@ -278,7 +278,7 @@ class StudentDashboardAcademicYearSubjectDeleteView(LoginRequiredMixin, IsStuden
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('academic_year_subject', None))
         context = {
-            "page_title": "Delete Academic Year Subject: {obj}",
+            "page_title": "Delete School Year Subject: {obj}",
             "menu_section": "student_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "delete",

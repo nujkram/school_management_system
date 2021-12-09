@@ -56,7 +56,7 @@ urlpatterns += [
 
 class AdminDashboardAcademicYearSubjectListView(LoginRequiredMixin, IsAdminViewMixin, View):
     """ 
-    List view for Academic Year Subjects. 
+    List view for School Year Subjects.
     
     Allowed HTTP verbs: 
         - GET
@@ -78,7 +78,7 @@ class AdminDashboardAcademicYearSubjectListView(LoginRequiredMixin, IsAdminViewM
         objs = paginator.get_page(page)
 
         context = {
-            "page_title": f"Academic Year Subjects",
+            "page_title": f"School Year Subjects",
             "menu_section": "admin_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "list",
@@ -114,7 +114,7 @@ class AdminDashboardAcademicYearSubjectCreateView(LoginRequiredMixin, IsAdminVie
             form = MasterForm(initial={'academic_year': academic_year})
 
         context = {
-            "page_title": "Create new Academic Year Subject",
+            "page_title": "Create new School Year Subject",
             "menu_section": "admin_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "create",
@@ -146,7 +146,7 @@ class AdminDashboardAcademicYearSubjectCreateView(LoginRequiredMixin, IsAdminVie
             )
         else:
             context = {
-                "page_title": "Create new Academic Year Subject",
+                "page_title": "Create new School Year Subject",
                 "menu_section": "admin_dashboard",
                 "menu_subsection": "academic_year_subject",
                 "menu_action": "create",
@@ -179,7 +179,7 @@ class AdminDashboardAcademicYearSubjectDetailView(LoginRequiredMixin, IsAdminVie
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('academic_year_subject', None))
         context = {
-            "page_title": f"Academic Year Subject: {obj}",
+            "page_title": f"School Year Subject: {obj}",
             "menu_section": "admin_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "detail",
@@ -210,7 +210,7 @@ class AdminDashboardAcademicYearSubjectUpdateView(LoginRequiredMixin, IsAdminVie
         form = MasterForm(instance=obj)
 
         context = {
-            "page_title": f"Update Academic Year Subject: {obj}",
+            "page_title": f"Update School Year Subject: {obj}",
             "menu_section": "admin_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "update",
@@ -244,7 +244,7 @@ class AdminDashboardAcademicYearSubjectUpdateView(LoginRequiredMixin, IsAdminVie
             )
         else:
             context = {
-                "page_title": "Update Academic Year Subject: {obj}",
+                "page_title": "Update School Year Subject: {obj}",
                 "menu_section": "admin_dashboard",
                 "menu_subsection": "academic_year_subject",
                 "menu_action": "update",
@@ -279,7 +279,7 @@ class AdminDashboardAcademicYearSubjectDeleteView(LoginRequiredMixin, IsAdminVie
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('academic_year_subject', None))
         context = {
-            "page_title": "Delete Academic Year Subject: {obj}",
+            "page_title": "Delete School Year Subject: {obj}",
             "menu_section": "admin_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "delete",

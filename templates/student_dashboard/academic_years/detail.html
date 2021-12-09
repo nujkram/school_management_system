@@ -13,7 +13,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'student_dashboard_home_view' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'student_dashboard_academic_years_list' %}">Academic Years</a>
+                    <li class="breadcrumb-item"><a href="{% url 'student_dashboard_academic_years_list' %}">School Years</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
                 </ol>
@@ -70,11 +70,11 @@
                 title="View List">
                 <i class="tim-icons icon-bullet-list-67"></i>
             </a>
-            <a class="btn btn-success btn-sm btn-icon" href="{% url 'student_dashboard_academic_years_update' obj.pk %}" title="Update Academic Year">
+            <a class="btn btn-success btn-sm btn-icon" href="{% url 'student_dashboard_academic_years_update' obj.pk %}" title="Update School Year">
                 <i class="tim-icons icon-settings"></i>
             </a>
             <a class="btn btn-danger btn-sm btn-icon" href="{% url 'student_dashboard_academic_years_delete' obj.pk %}"
-               title="Delete Academic Year">
+               title="Delete School Year">
                 <i class="tim-icons icon-simple-remove"></i>
             </a>
         </div>
