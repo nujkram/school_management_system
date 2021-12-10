@@ -304,6 +304,9 @@ class FacultyDashboardTopicDeleteView(LoginRequiredMixin, IsFacultyViewMixin, Vi
 
         return HttpResponseRedirect(
             reverse(
-                'faculty_dashboard_topics_list'
+                'faculty_dashboard_topics_list',
+                kwargs={
+                    'academic_year_subject': obj.academic_year_subject.pk
+                }
             )
         )
