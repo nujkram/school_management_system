@@ -273,7 +273,7 @@ class AdminDashboardDepartmentDeleteView(LoginRequiredMixin, IsAdminViewMixin, V
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('department', None))
         context = {
-            "page_title": "Delete Department: {obj}",
+            "page_title": f"Delete Department: {obj}",
             "menu_section": "admin_dashboard",
             "menu_subsection": "department",
             "menu_action": "delete",

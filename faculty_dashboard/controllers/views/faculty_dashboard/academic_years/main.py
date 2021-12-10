@@ -273,7 +273,7 @@ class FacultyDashboardAcademicYearDeleteView(LoginRequiredMixin, IsFacultyViewMi
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('academic_year', None))
         context = {
-            "page_title": "Delete School Year: {obj}",
+            "page_title": f"Delete School Year: {obj}",
             "menu_section": "faculty_dashboard",
             "menu_subsection": "academic_year",
             "menu_action": "delete",

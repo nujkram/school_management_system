@@ -279,7 +279,7 @@ class AdminDashboardAcademicYearSubjectDeleteView(LoginRequiredMixin, IsAdminVie
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('academic_year_subject', None))
         context = {
-            "page_title": "Delete School Year Subject: {obj}",
+            "page_title": f"Delete School Year Subject: {obj}",
             "menu_section": "admin_dashboard",
             "menu_subsection": "academic_year_subject",
             "menu_action": "delete",

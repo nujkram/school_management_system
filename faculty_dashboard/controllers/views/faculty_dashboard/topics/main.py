@@ -81,7 +81,7 @@ class FacultyDashboardTopicListView(LoginRequiredMixin, IsFacultyViewMixin, View
         subject = Subject.objects.get(pk=academic_year_subject.subject.pk)
 
         context = {
-            "page_title": f"Topics",
+            "page_title": f"Categories",
             "menu_section": "faculty_dashboard",
             "menu_subsection": "topic",
             "menu_action": "list",
@@ -116,7 +116,7 @@ class FacultyDashboardTopicCreateView(LoginRequiredMixin, IsFacultyViewMixin, Vi
         form = MasterForm(initial={'academic_year_subject': academic_year_subject.pk, 'subject': academic_year_subject.subject.pk})
 
         context = {
-            "page_title": "Create new Topic",
+            "page_title": "Create new Category",
             "menu_section": "faculty_dashboard",
             "menu_subsection": "topic",
             "menu_action": "create",
@@ -149,7 +149,7 @@ class FacultyDashboardTopicCreateView(LoginRequiredMixin, IsFacultyViewMixin, Vi
             )
         else:
             context = {
-                "page_title": "Create new Topic",
+                "page_title": "Create new Category",
                 "menu_section": "faculty_dashboard",
                 "menu_subsection": "topic",
                 "menu_action": "create",
@@ -182,7 +182,7 @@ class FacultyDashboardTopicDetailView(LoginRequiredMixin, IsFacultyViewMixin, Vi
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('topic', None))
         context = {
-            "page_title": f"Topic: {obj}",
+            "page_title": f"Category: {obj}",
             "menu_section": "faculty_dashboard",
             "menu_subsection": "topic",
             "menu_action": "detail",
@@ -213,7 +213,7 @@ class FacultyDashboardTopicUpdateView(LoginRequiredMixin, IsFacultyViewMixin, Vi
         form = MasterForm(instance=obj)
 
         context = {
-            "page_title": f"Update Topic: {obj}",
+            "page_title": f"Update Category: {obj}",
             "menu_section": "faculty_dashboard",
             "menu_subsection": "topic",
             "menu_action": "update",
@@ -247,7 +247,7 @@ class FacultyDashboardTopicUpdateView(LoginRequiredMixin, IsFacultyViewMixin, Vi
             )
         else:
             context = {
-                "page_title": "Update Topic: {obj}",
+                "page_title": "Update Category: {obj}",
                 "menu_section": "faculty_dashboard",
                 "menu_subsection": "topic",
                 "menu_action": "update",
@@ -282,7 +282,7 @@ class FacultyDashboardTopicDeleteView(LoginRequiredMixin, IsFacultyViewMixin, Vi
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('topic', None))
         context = {
-            "page_title": "Delete Topic: {obj}",
+            "page_title": f"Delete Category: {obj}",
             "menu_section": "faculty_dashboard",
             "menu_subsection": "topic",
             "menu_action": "delete",

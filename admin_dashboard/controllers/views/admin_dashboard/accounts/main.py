@@ -274,7 +274,7 @@ class AdminDashboardAccountDeleteView(LoginRequiredMixin, IsAdminViewMixin, View
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('account', None))
         context = {
-            "page_title": "Delete Account: {obj}",
+            "page_title": f"Delete Account: {obj}",
             "menu_section": "admin_dashboard",
             "menu_subsection": "account",
             "menu_action": "delete",
