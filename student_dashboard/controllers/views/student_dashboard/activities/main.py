@@ -5,6 +5,8 @@ Description for School Management System
 Author: Empty (empty@gmail.com)
 Version: 0.0.1
 """
+import re
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect
@@ -17,6 +19,9 @@ from accounts.mixins.user_type_mixins import IsStudentViewMixin
 
 from activities.models.activity.models import Activity as Master
 from student_dashboard.controllers.views.student_dashboard.activities.forms import ActivityForm as MasterForm
+
+yt_link = re.compile(r'(https?://)?(www\.)?((youtu\.be/)|(youtube\.com/watch/?\?v=))([A-Za-z0-9-_]+)', re.I)
+yt_embed = '<iframe width="854" height="480" src="https://www.youtube.com/embed/{0}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
 
 """
 URLS
@@ -52,6 +57,10 @@ urlpatterns += [
     )
 ]
 """
+
+
+def convert_ytframe(text):
+    return yt_link.sub(lambda match: yt_embed.format(match.groups()[5]), text)
 
 
 class StudentDashboardActivityListView(LoginRequiredMixin, IsStudentViewMixin, View):
@@ -116,7 +125,7 @@ class StudentDashboardActivityCreateView(LoginRequiredMixin, IsStudentViewMixin,
         }
 
         return render(request, "student_dashboard/activities/form.html", context)
-    
+
     def post(self, request, *args, **kwargs):
         form = MasterForm(data=request.POST)
 
@@ -172,12 +181,15 @@ class StudentDashboardActivityDetailView(LoginRequiredMixin, IsStudentViewMixin,
 
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('activity', None))
+        video_url = convert_ytframe(obj.video_url)
+
         context = {
             "page_title": f"Activity: {obj}",
             "menu_section": "student_dashboard",
             "menu_subsection": "activity",
             "menu_action": "detail",
-            "obj": obj
+            "obj": obj,
+            "video_url": video_url,
         }
 
         return render(request, "student_dashboard/activities/detail.html", context)
@@ -213,7 +225,7 @@ class StudentDashboardActivityUpdateView(LoginRequiredMixin, IsStudentViewMixin,
         }
 
         return render(request, "student_dashboard/activities/form.html", context)
-    
+
     def post(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('activity', None))
         form = MasterForm(instance=obj, data=request.POST)
@@ -281,7 +293,7 @@ class StudentDashboardActivityDeleteView(LoginRequiredMixin, IsStudentViewMixin,
         }
 
         return render(request, "student_dashboard/activities/delete.html", context)
-    
+
     def post(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('activity', None))
 

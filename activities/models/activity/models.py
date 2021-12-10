@@ -44,6 +44,7 @@ class Activity(models.Model):
     # === Properties ===
     description = models.CharField(max_length=255, null=True, blank=True)
     category = models.CharField(max_length=32, null=True, blank=True)
+    video_url = models.CharField(max_length=255, null=True, blank=True)
     attached_file = models.FileField(upload_to=file_upload_path, blank=True, null=True)
 
     # === State ===

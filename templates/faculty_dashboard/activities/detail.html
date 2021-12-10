@@ -18,7 +18,8 @@
                     <li class="breadcrumb-item"><a
                             href="{% url 'faculty_dashboard_academic_year_subjects_list' obj.topic.academic_year_subject.pk %}">{{ obj.topic.academic_year_subject.academic_year }}</a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_subjects_detail' obj.topic.academic_year_subject.subject.pk %}">Subject: {{ obj.topic.academic_year_subject.subject }}</a>
+                    <li class="breadcrumb-item"><a
+                            href="{% url 'faculty_dashboard_subjects_detail' obj.topic.academic_year_subject.subject.pk %}">Subject: {{ obj.topic.academic_year_subject.subject }}</a>
                     </li>
                     <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_activities_list' %}">Activities</a>
                     </li>
@@ -75,6 +76,20 @@
                 </div>
             </div>
         </div>
+
+        {% if obj.video_url %}
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-category">&nbsp;</h5>
+                        <h2 class="card-title">Video</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        {{ video_url|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 
     <div class="card">
