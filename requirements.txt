@@ -27,6 +27,7 @@ django-extensions
 django-filter
 django-mathfilters
 django-phonenumber-field
+django-softdelete
 django-split-settings
 djangorestframework
 drf_yasg

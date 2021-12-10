@@ -23,6 +23,7 @@ from django_extensions.db import fields as extension_fields
 from django.apps import apps
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from softdelete.models import SoftDeleteObject
 
 from .managers import ActivityManager as manager
 
@@ -31,7 +32,7 @@ def file_upload_path(instance, filename):
     return f'upload/{instance}/{filename}'
 
 
-class Activity(models.Model):
+class Activity(SoftDeleteObject, models.Model):
     # === Basic ===
     created = models.DateTimeField(null=False, auto_now_add=True)
     updated = models.DateTimeField(null=False, auto_now=True)
@@ -44,6 +45,7 @@ class Activity(models.Model):
     # === Properties ===
     description = models.CharField(max_length=255, null=True, blank=True)
     category = models.CharField(max_length=32, null=True, blank=True)
+    video_url = models.CharField(max_length=255, null=True, blank=True)
     attached_file = models.FileField(upload_to=file_upload_path, blank=True, null=True)
 
     # === State ===

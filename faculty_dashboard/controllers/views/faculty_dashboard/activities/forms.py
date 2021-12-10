@@ -9,6 +9,7 @@ class ActivityForm(forms.ModelForm):
             'name',
             'description',
             'category',
+            'video_url',
             'attached_file',
             'topic',
         )

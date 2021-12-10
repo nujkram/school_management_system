@@ -13,7 +13,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_home_view' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_academic_years_list' %}">Academic Years</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_academic_years_list' %}">School Years</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ academic_year }}</li>
                 </ol>
             </nav>
@@ -43,7 +43,7 @@
                                     <i class="tim-icons icon-book-bookmark"></i>
                                 </a>
                                 <a class="btn btn-info btn-sm btn-icon"
-                                   href="{% url 'faculty_dashboard_topics_list' obj.pk %}" title="View Topics">
+                                   href="{% url 'faculty_dashboard_topics_list' obj.pk %}" title="View Categories">
                                     <i class="tim-icons icon-bullet-list-67"></i>
                                 </a>
                             </td>

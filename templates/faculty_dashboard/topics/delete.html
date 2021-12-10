@@ -27,7 +27,7 @@
                             Yes I am, delete {{ obj }}
                         </button>
                         <a class="btn btn-default animation-on-hover"
-                           href="{% url 'faculty_dashboard_topics_list' %}">
+                           href="{% url 'faculty_dashboard_topics_list' obj.pk %}">
                             No, I changed my mind
                         </a>
                     </form>

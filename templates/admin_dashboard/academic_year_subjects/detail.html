@@ -13,7 +13,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'admin_dashboard_home_view' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'admin_dashboard_academic_years_list' %}">Academic Years</a>
+                    <li class="breadcrumb-item"><a href="{% url 'admin_dashboard_academic_years_list' %}">School Years</a>
                     <li class="breadcrumb-item"><a href="{% url 'admin_dashboard_academic_years_detail' obj.academic_year.pk %}">{{ obj.academic_year }}</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ obj.subject }}</li>
@@ -67,11 +67,11 @@
             <h4 class="card-title">Actions</h4>
         </div>
         <div class="card-body">
-            <a class="btn btn-success btn-sm btn-icon" href="{% url 'admin_dashboard_academic_year_subjects_update' obj.pk %}" title="Update Academic Year Subject">
+            <a class="btn btn-success btn-sm btn-icon" href="{% url 'admin_dashboard_academic_year_subjects_update' obj.pk %}" title="Update School Year Subject">
                 <i class="tim-icons icon-settings"></i>
             </a>
             <a class="btn btn-danger btn-sm btn-icon" href="{% url 'admin_dashboard_academic_year_subjects_delete' obj.pk %}"
-               title="Delete Academic Year Subject">
+               title="Delete School Year Subject">
                 <i class="tim-icons icon-simple-remove"></i>
             </a>
         </div>

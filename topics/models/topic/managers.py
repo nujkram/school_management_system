@@ -4,7 +4,7 @@ from django.apps import apps
 
 class TopicQuerySet(models.QuerySet):
     def actives(self):
-        return self.filter(is_active=True)
+        return self.filter(is_active=True, deleted_at=None)
 
     def inactive(self):
         return self.filter(is_active=False)

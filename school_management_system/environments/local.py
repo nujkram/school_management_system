@@ -35,7 +35,8 @@ try:
     with open(os.path.join(BASE_DIR, 'SECRET_KEY')) as f:
         SECRET_KEY = f.read().strip()
 except FileNotFoundError:
-    generated_key = ''.join([random.SystemRandom().choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(50)])
+    generated_key = ''.join(
+        [random.SystemRandom().choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(50)])
     secret = open(os.path.join(BASE_DIR, 'SECRET_KEY'), 'w')
     secret.write(generated_key)
     secret.close()
@@ -135,7 +136,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_EMAIL_FIELD = 'email'
-TOKEN_LIFETIME = 21600 # 6 hours
+TOKEN_LIFETIME = 21600  # 6 hours
 # LOGIN_REDIRECT_URL = '/accounts/postlogin'
 
 ########################################################################################################################
@@ -187,7 +188,7 @@ TEMPLATES = [
         'DIRS': [
             'templates'
         ],
-        'APP_DIRS': True,
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -195,6 +196,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]
         },
     },
 ]
@@ -263,8 +268,6 @@ STATIC_ROOT = '/var/www/html/static/'
 MEDIA_URL = f'media/'
 MEDIA_ROOT = '/var/www/html/media/'
 TEMPORARY_MEDIA = '{}temp'.format(MEDIA_ROOT)
-
-
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

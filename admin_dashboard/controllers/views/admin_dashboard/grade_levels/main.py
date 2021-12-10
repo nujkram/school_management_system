@@ -273,7 +273,7 @@ class AdminDashboardGradeLevelDeleteView(LoginRequiredMixin, IsAdminViewMixin, V
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('grade_level', None))
         context = {
-            "page_title": "Delete Grade Level: {obj}",
+            "page_title": f"Delete Grade Level: {obj}",
             "menu_section": "admin_dashboard",
             "menu_subsection": "grade_level",
             "menu_action": "delete",
