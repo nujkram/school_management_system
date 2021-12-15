@@ -5,6 +5,7 @@ from student_dashboard.controllers.views.student_dashboard.academic_year_subject
 from student_dashboard.controllers.views.student_dashboard.subjects import main as subjects_views
 from student_dashboard.controllers.views.student_dashboard.topics import main as topics_views
 from student_dashboard.controllers.views.student_dashboard.activities import main as activities_views
+from student_dashboard.controllers.views.student_dashboard.exercises import main as exercises_views
 
 version = 'api/v1'
 
@@ -157,5 +158,33 @@ urlpatterns += [
         'activity/<activity>/delete',
         activities_views.StudentDashboardActivityDeleteView.as_view(),
         name='student_dashboard_activities_delete'
+    )
+]
+
+urlpatterns += [
+    path(
+        'exercise/list',
+        exercises_views.StudentDashboardExerciseListView.as_view(),
+        name='student_dashboard_exercises_list'
+    ),
+    path(
+        'exercise/<exercise>/detail',
+        exercises_views.StudentDashboardExerciseDetailView.as_view(),
+        name='student_dashboard_exercises_detail'
+    ),
+    path(
+        'exercise/create',
+        exercises_views.StudentDashboardExerciseCreateView.as_view(),
+        name='student_dashboard_exercises_create'
+    ),
+    path(
+        'exercise/<exercise>/update',
+        exercises_views.StudentDashboardExerciseUpdateView.as_view(),
+        name='student_dashboard_exercises_update'
+    ),
+    path(
+        'exercise/<exercise>/delete',
+        exercises_views.StudentDashboardExerciseDeleteView.as_view(),
+        name='student_dashboard_exercises_delete'
     )
 ]

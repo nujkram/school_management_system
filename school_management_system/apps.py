@@ -63,4 +63,5 @@ INSTALLED_APPS += [
     'subjects',
     'topics',
     'activities',
+    'exercises',
 ]

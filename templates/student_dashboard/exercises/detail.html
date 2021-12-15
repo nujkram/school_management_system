@@ -13,7 +13,7 @@
             <nav aria-label="breadcrumb" role="navigation">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'student_dashboard_home_view' %}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{% url 'student_dashboard_activities_list' %}">Activities</a>
+                    <li class="breadcrumb-item"><a href="{% url 'student_dashboard_exercises_list' %}">Exercises</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
                 </ol>
@@ -34,15 +34,6 @@
                 <div class="card-body">
                     <h4 class="card-title">{{ obj.name }}</h4>
                     <h6 class="card-subtitle mb-2 text-muted">Name</h6>
-                    <h4 class="card-title">{{ obj.description }}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
-                    <h4 class="card-title">{{ obj.category }}</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Category</h6>
-                    {% if obj.attached_file %}
-                        <h4 class="card-title"><a href="{{ obj.attached_file.url }}" download> Download Attachment <i
-                                class="tim-icons icon-cloud-download-93"></i></a></h4>
-                        <h6 class="card-subtitle mb-2 text-muted">File</h6>
-                    {% endif %}
                 </div>
             </div>
         </div>
@@ -68,20 +59,6 @@
                 </div>
             </div>
         </div>
-
-        {% if obj.video_url %}
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-category">&nbsp;</h5>
-                        <h2 class="card-title">Video</h2>
-                    </div>
-                    <div class="card-body text-center">
-                        {{ video_url|safe }}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
     </div>
 
     <div class="card">
@@ -89,15 +66,10 @@
             <h4 class="card-title">Actions</h4>
         </div>
         <div class="card-body">
-            <a class="btn btn-info btn-sm btn-icon" href="{% url 'student_dashboard_topics_list' obj.topic.pk %}"
+            <a class="btn btn-info btn-sm btn-icon" href="{% url 'student_dashboard_topics_list' obj.activity.topic.pk %}"
                 title="View List">
                 <i class="tim-icons icon-bullet-list-67"></i>
             </a>
-            <a class="btn btn-info btn-sm btn-icon" href="{% url 'student_dashboard_exercises_create' %}?activity={{ obj.pk }}"
-                title="Submit">
-                <i class="tim-icons icon-simple-add"></i>
-            </a>
-
         </div>
     </div>
 

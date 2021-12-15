@@ -6,6 +6,7 @@ from faculty_dashboard.controllers.views.faculty_dashboard.subjects import main 
 from faculty_dashboard.controllers.views.faculty_dashboard.subject_students import main as subject_students_views
 from faculty_dashboard.controllers.views.faculty_dashboard.topics import main as topics_views
 from faculty_dashboard.controllers.views.faculty_dashboard.activities import main as activities_views
+from faculty_dashboard.controllers.views.faculty_dashboard.exercises import main as exercises_views
 
 version = 'api/v1'
 
@@ -188,3 +189,32 @@ urlpatterns += [
         name='faculty_dashboard_activities_delete'
     )
 ]
+
+urlpatterns += [
+    path(
+        'exercise/<activity>/list',
+        exercises_views.FacultyDashboardExerciseListView.as_view(),
+        name='faculty_dashboard_exercises_list'
+    ),
+    path(
+        'exercise/<exercise>/detail',
+        exercises_views.FacultyDashboardExerciseDetailView.as_view(),
+        name='faculty_dashboard_exercises_detail'
+    ),
+    path(
+        'exercise/create',
+        exercises_views.FacultyDashboardExerciseCreateView.as_view(),
+        name='faculty_dashboard_exercises_create'
+    ),
+    path(
+        'exercise/<exercise>/update',
+        exercises_views.FacultyDashboardExerciseUpdateView.as_view(),
+        name='faculty_dashboard_exercises_update'
+    ),
+    path(
+        'exercise/<exercise>/delete',
+        exercises_views.FacultyDashboardExerciseDeleteView.as_view(),
+        name='faculty_dashboard_exercises_delete'
+    )
+]
+
