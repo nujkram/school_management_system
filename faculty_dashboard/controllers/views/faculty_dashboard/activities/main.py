@@ -184,7 +184,10 @@ class FacultyDashboardActivityDetailView(LoginRequiredMixin, IsFacultyViewMixin,
 
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('activity', None))
-        video_url = convert_ytframe(obj.video_url)
+        try:
+            video_url = convert_ytframe(obj.video_url)
+        except:
+            video_url = ''
 
         context = {
             "page_title": f"Activity: {obj}",
