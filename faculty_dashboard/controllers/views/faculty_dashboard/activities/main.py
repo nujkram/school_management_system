@@ -18,6 +18,7 @@ from django.core.paginator import Paginator
 from accounts.mixins.user_type_mixins import IsFacultyViewMixin
 
 from activities.models.activity.models import Activity as Master
+from activity_files.models import ActivityFile
 from faculty_dashboard.controllers.views.faculty_dashboard.activities.forms import ActivityForm as MasterForm
 from topics.models import Topic
 
@@ -184,6 +185,7 @@ class FacultyDashboardActivityDetailView(LoginRequiredMixin, IsFacultyViewMixin,
 
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('activity', None))
+        files = ActivityFile.objects.filter(activity=obj)
         try:
             video_url = convert_ytframe(obj.video_url)
         except:
@@ -196,6 +198,7 @@ class FacultyDashboardActivityDetailView(LoginRequiredMixin, IsFacultyViewMixin,
             "menu_action": "detail",
             "obj": obj,
             "video_url": video_url,
+            "files": files,
         }
 
         return render(request, "faculty_dashboard/activities/detail.html", context)
