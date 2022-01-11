@@ -13,3 +13,4 @@ mkdir -p subjects/migrations && touch subjects/migrations/__init__.py
 mkdir -p topics/migrations && touch topics/migrations/__init__.py
 mkdir -p activities/migrations && touch activities/migrations/__init__.py
 mkdir -p exercises/migrations && touch exercises/migrations/__init__.py
+mkdir -p activity_files/migrations && touch activity_files/migrations/__init__.py

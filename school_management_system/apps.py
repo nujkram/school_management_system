@@ -64,4 +64,5 @@ INSTALLED_APPS += [
     'topics',
     'activities',
     'exercises',
+    'activity_files',
 ]

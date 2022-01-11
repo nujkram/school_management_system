@@ -1,0 +1,72 @@
+{% extends 'faculty_dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header_css %} {% endblock %}
+{% block header_js %} {% endblock %}
+
+{% block page_wrapper_contents %}
+    <div class="modal fade" id="modal-progress" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Uploading...</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 0%;">0%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">{{ page_title }}</h2>
+                </div>
+                <div class="card-body">
+                    {% if messages %} {% for m in messages %}
+                        <div class="alert alert-{{ m.tags }}">{{ m }}</div>
+                    {% endfor %} {% endif %}
+                    {# 1. BUTTON TO TRIGGER THE ACTION #}
+                    <button type="button" class="btn btn-primary js-upload-photos">
+                        <span class="glyphicon glyphicon-cloud-upload"></span> Upload files
+                    </button>
+
+                    {# 2. FILE INPUT TO BE USED BY THE PLUG-IN #}
+                    <input id="fileupload" type="file" name="attached_file" multiple
+                           style="display: none;"
+                           data-url="{% url 'faculty_dashboard_activity_files_create' %}?activity={{ activity }}"
+                           data-form-data='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+
+                    {# 3. TABLE TO DISPLAY THE UPLOADED PHOTOS #}
+                    <table id="gallery" class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Files</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for file in files %}
+                            <tr>
+                                <td><a href="{{ file.attached_file.url }}">{{ file.attached_file }}</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'dashboard/js/jquery-file-upload/vendor/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'dashboard/js/jquery-file-upload/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'dashboard/js/jquery-file-upload/jquery.fileupload.js' %}"></script>
+
+    <script src="{% static 'dashboard/js/basic-upload.js' %}"></script>
+{% endblock %}

@@ -7,6 +7,7 @@ from faculty_dashboard.controllers.views.faculty_dashboard.subject_students impo
 from faculty_dashboard.controllers.views.faculty_dashboard.topics import main as topics_views
 from faculty_dashboard.controllers.views.faculty_dashboard.activities import main as activities_views
 from faculty_dashboard.controllers.views.faculty_dashboard.exercises import main as exercises_views
+from faculty_dashboard.controllers.views.faculty_dashboard.activity_files import main as activity_files_views
 
 version = 'api/v1'
 
@@ -218,3 +219,30 @@ urlpatterns += [
     )
 ]
 
+urlpatterns += [
+    path(
+        'activity_file/list',
+        activity_files_views.FacultyDashboardActivityFileListView.as_view(),
+        name='faculty_dashboard_activity_files_list'
+    ),
+    path(
+        'activity_file/<activity_file>/detail',
+        activity_files_views.FacultyDashboardActivityFileDetailView.as_view(),
+        name='faculty_dashboard_activity_files_detail'
+    ),
+    path(
+        'activity_file/create',
+        activity_files_views.FacultyDashboardActivityFileCreateView.as_view(),
+        name='faculty_dashboard_activity_files_create'
+    ),
+    path(
+        'activity_file/<activity_file>/update',
+        activity_files_views.FacultyDashboardActivityFileUpdateView.as_view(),
+        name='faculty_dashboard_activity_files_update'
+    ),
+    path(
+        'activity_file/<activity_file>/delete',
+        activity_files_views.FacultyDashboardActivityFileDeleteView.as_view(),
+        name='faculty_dashboard_activity_files_delete'
+    )
+]

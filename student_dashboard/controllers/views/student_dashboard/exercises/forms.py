@@ -8,6 +8,9 @@ class ExerciseForm(forms.ModelForm):
         fields = (
             'name', 'attached_file', 'remarks', 'activity'
         )
+        widgets = {
+            'activity': forms.TextInput(attrs={'class': 'custom-file-input'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super(ExerciseForm, self).__init__(*args, **kwargs)
