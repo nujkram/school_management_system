@@ -5,124 +5,125 @@
 {% block header_js %} {% endblock %}
 
 {% block page_wrapper_contents %}
-<div class="card mb-3">
-    <div class="card-header">
-        <h4 class="card-title">{{ page_title }}</h4>
-    </div>
-    <div class="card-body">
-        <nav aria-label="breadcrumb" role="navigation">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_home_view' %}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_academic_years_list' %}">Academic
-                    Years</a></li>
-                <li class="breadcrumb-item"><a
-                        href="{% url 'faculty_dashboard_academic_year_subjects_list' obj.topic.academic_year_subject.pk %}">{{ obj.topic.academic_year_subject.academic_year }}</a>
-                </li>
-                <li class="breadcrumb-item"><a
-                        href="{% url 'faculty_dashboard_subjects_detail' obj.topic.academic_year_subject.subject.pk %}">Subject: {{ obj.topic.academic_year_subject.subject }}</a>
-                </li>
-                <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_activities_list' %}">Activities</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
-            </ol>
-        </nav>
-        {% if messages %} {% for m in messages %}
-            <div class="alert alert-{{ m.tags }} ">{{ m }}</div>
-        {% endfor %} {% endif %}
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-category">&nbsp;</h5>
-                <h2 class="card-title">{{ obj.name }}</h2>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">{{ obj.name }}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Name</h6>
-                <h4 class="card-title">{{ obj.description }}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Description</h6>
-                <h4 class="card-title">{{ obj.category }}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Category</h6>
-                {% if obj.attached_file %}
-                    <h4 class="card-title"><a href="{{ obj.attached_file.url }}" download> Download Attachment <i
-                            class="tim-icons icon-cloud-download-93"></i></a></h4>
-                    <h6 class="card-subtitle mb-2 text-muted">File</h6>
-                {% endif %}
-
-                {% if files %}
-                {% for file in files %}
-                    <h4 class="card-title"><a href="{{ obj.attached_file.url }}" download> {{ file.attached_file.name }} <i
-                            class="tim-icons icon-cloud-download-93"></i></a></h4>
-                    <h6 class="card-subtitle mb-2 text-muted">File</h6>
-                {% endfor %}
-                {% endif %}
-            </div>
+    <div class="card mb-3">
+        <div class="card-header">
+            <h4 class="card-title">{{ page_title }}</h4>
+        </div>
+        <div class="card-body">
+            <nav aria-label="breadcrumb" role="navigation">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_home_view' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_academic_years_list' %}">Academic
+                        Years</a></li>
+                    <li class="breadcrumb-item"><a
+                            href="{% url 'faculty_dashboard_academic_year_subjects_list' obj.topic.academic_year_subject.pk %}">{{ obj.topic.academic_year_subject.academic_year }}</a>
+                    </li>
+                    <li class="breadcrumb-item"><a
+                            href="{% url 'faculty_dashboard_subjects_detail' obj.topic.academic_year_subject.subject.pk %}">Subject: {{ obj.topic.academic_year_subject.subject }}</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="{% url 'faculty_dashboard_activities_list' %}">Activities</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
+                </ol>
+            </nav>
+            {% if messages %} {% for m in messages %}
+                <div class="alert alert-{{ m.tags }} ">{{ m }}</div>
+            {% endfor %} {% endif %}
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="card-category">&nbsp;</h5>
-                <h2 class="card-title">Status</h2>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">
-                    {% if obj.is_active %}
-                        <strong class="text-primary">Active</strong>
-                    {% else %}
-                        <strong class="text-secondary">Inactive</strong>
-                    {% endif %}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Status</h6>
-                <h4 class="card-title">{{ obj.created }}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Date Created</h6>
-                <h4 class="card-title">{{ obj.updated }}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Date Last Updated</h6>
-            </div>
-        </div>
-    </div>
-
-    {% if obj.video_url %}
-        <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-category">&nbsp;</h5>
-                    <h2 class="card-title">Video</h2>
+                    <h2 class="card-title">{{ obj.name }}</h2>
                 </div>
-                <div class="card-body text-center">
-                    {{ video_url|safe }}
+                <div class="card-body">
+                    <h4 class="card-title">{{ obj.name }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Name</h6>
+                    <h4 class="card-title">{{ obj.description }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+                    <h4 class="card-title">{{ obj.category }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Category</h6>
+                    {% if obj.attached_file %}
+                        <h4 class="card-title"><a href="{{ obj.attached_file.url }}" download> Download Attachment <i
+                                class="tim-icons icon-cloud-download-93"></i></a></h4>
+                    {% endif %}
+
+                    {% if files %}
+                        {% for file in files %}
+                            <h4 class="card-title"><a href="{{ obj.attached_file.url }}"
+                                                      download> {{ file.attached_file.name }} <i
+                                    class="tim-icons icon-cloud-download-93"></i></a></h4>
+                            <h6 class="card-subtitle mb-2 text-muted">File</h6>
+                        {% endfor %}
+                    {% endif %}
+                    <h6 class="card-subtitle mb-2 text-muted">File</h6>
                 </div>
             </div>
         </div>
-    {% endif %}
-</div>
 
-<div class="card">
-    <div class="card-header">
-        <h4 class="card-title">Actions</h4>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category">&nbsp;</h5>
+                    <h2 class="card-title">Status</h2>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        {% if obj.is_active %}
+                            <strong class="text-primary">Active</strong>
+                        {% else %}
+                            <strong class="text-secondary">Inactive</strong>
+                        {% endif %}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Status</h6>
+                    <h4 class="card-title">{{ obj.created }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Date Created</h6>
+                    <h4 class="card-title">{{ obj.updated }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Date Last Updated</h6>
+                </div>
+            </div>
+        </div>
+
+        {% if obj.video_url %}
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-category">&nbsp;</h5>
+                        <h2 class="card-title">Video</h2>
+                    </div>
+                    <div class="card-body text-center">
+                        {{ video_url|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
-    <div class="card-body">
-        <a class="btn btn-info btn-sm btn-icon" title="Add Files"
-           href="{% url 'faculty_dashboard_activity_files_create' %}?activity={{ obj.pk }}">
-            <i class="tim-icons icon-simple-add"></i>
-        </a>
-        <a class="btn btn-info btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_list' %}"
-           title="View List">
-            <i class="tim-icons icon-bullet-list-67"></i>
-        </a>
-        <a class="btn btn-success btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_update' obj.pk %}"
-           title="Update Activity">
-            <i class="tim-icons icon-settings"></i>
-        </a>
-        <a class="btn btn-danger btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_delete' obj.pk %}"
-           title="Delete Activity">
-            <i class="tim-icons icon-simple-remove"></i>
-        </a>
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Actions</h4>
+        </div>
+        <div class="card-body">
+            <a class="btn btn-info btn-sm btn-icon" title="Add Files"
+               href="{% url 'faculty_dashboard_activity_files_create' %}?activity={{ obj.pk }}">
+                <i class="tim-icons icon-simple-add"></i>
+            </a>
+            <a class="btn btn-info btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_list' %}"
+               title="View List">
+                <i class="tim-icons icon-bullet-list-67"></i>
+            </a>
+            <a class="btn btn-success btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_update' obj.pk %}"
+               title="Update Activity">
+                <i class="tim-icons icon-settings"></i>
+            </a>
+            <a class="btn btn-danger btn-sm btn-icon" href="{% url 'faculty_dashboard_activities_delete' obj.pk %}"
+               title="Delete Activity">
+                <i class="tim-icons icon-simple-remove"></i>
+            </a>
+        </div>
     </div>
-</div>
 
 {% endblock %}
 

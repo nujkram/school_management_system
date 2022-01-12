@@ -144,7 +144,7 @@ class FacultyDashboardSubjectStudentCreateView(LoginRequiredMixin, IsFacultyView
                 reverse(
                     'faculty_dashboard_subjects_detail',
                     kwargs={
-                        'subject_student': data.subject.pk
+                        'subject': data.subject.pk
                     }
                 )
             )

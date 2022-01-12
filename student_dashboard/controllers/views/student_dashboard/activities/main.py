@@ -18,6 +18,7 @@ from django.core.paginator import Paginator
 from accounts.mixins.user_type_mixins import IsStudentViewMixin
 
 from activities.models.activity.models import Activity as Master
+from activity_files.models import ActivityFile
 from student_dashboard.controllers.views.student_dashboard.activities.forms import ActivityForm as MasterForm
 
 yt_link = re.compile(r'(https?://)?(www\.)?((youtu\.be/)|(youtube\.com/watch/?\?v=))([A-Za-z0-9-_]+)', re.I)
@@ -181,7 +182,11 @@ class StudentDashboardActivityDetailView(LoginRequiredMixin, IsStudentViewMixin,
 
     def get(self, request, *args, **kwargs):
         obj = get_object_or_404(Master, pk=kwargs.get('activity', None))
-        video_url = convert_ytframe(obj.video_url)
+        files = ActivityFile.objects.filter(activity=obj)
+        try:
+            video_url = convert_ytframe(obj.video_url)
+        except:
+            video_url = ''
 
         context = {
             "page_title": f"Activity: {obj}",
@@ -190,6 +195,7 @@ class StudentDashboardActivityDetailView(LoginRequiredMixin, IsStudentViewMixin,
             "menu_action": "detail",
             "obj": obj,
             "video_url": video_url,
+            "files": files,
         }
 
         return render(request, "student_dashboard/activities/detail.html", context)

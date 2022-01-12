@@ -18,7 +18,7 @@
                     <li class="breadcrumb-item active" aria-current="page">{{ page_title }}</li>
                 </ol>
             </nav>
-            {% if messages %} {% for m in messages %} 
+            {% if messages %} {% for m in messages %}
                 <div class="alert alert-{{ m.tags }} ">{{ m }}</div>
             {% endfor %} {% endif %}
         </div>
@@ -41,8 +41,15 @@
                     {% if obj.attached_file %}
                         <h4 class="card-title"><a href="{{ obj.attached_file.url }}" download> Download Attachment <i
                                 class="tim-icons icon-cloud-download-93"></i></a></h4>
-                        <h6 class="card-subtitle mb-2 text-muted">File</h6>
                     {% endif %}
+                    {% if files %}
+                        {% for file in files %}
+                            <h4 class="card-title"><a href="{{ obj.attached_file.url }}"
+                                                      download> {{ file.attached_file.name }} <i
+                                    class="tim-icons icon-cloud-download-93"></i></a></h4>
+                        {% endfor %}
+                    {% endif %}
+                    <h6 class="card-subtitle mb-2 text-muted">File</h6>
                 </div>
             </div>
         </div>
@@ -90,11 +97,12 @@
         </div>
         <div class="card-body">
             <a class="btn btn-info btn-sm btn-icon" href="{% url 'student_dashboard_topics_list' obj.topic.pk %}"
-                title="View List">
+               title="View List">
                 <i class="tim-icons icon-bullet-list-67"></i>
             </a>
-            <a class="btn btn-info btn-sm btn-icon" href="{% url 'student_dashboard_exercises_create' %}?activity={{ obj.pk }}"
-                title="Submit">
+            <a class="btn btn-info btn-sm btn-icon"
+               href="{% url 'student_dashboard_exercises_create' %}?activity={{ obj.pk }}"
+               title="Submit">
                 <i class="tim-icons icon-simple-add"></i>
             </a>
 
